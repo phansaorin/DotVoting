@@ -1,0 +1,19 @@
+<body class="body">
+<center>
+<h1><font color="orange">Users management</font></h1>
+<table border="1">
+	<tr class="test">
+		<th>First name</th>
+		
+		<th>Action</th>
+	</tr>
+	<% @users.each do |user|%>
+		<tr>
+			<th><%= user.email %></th>
+			
+			
+		</tr>
+	<% end %>
+</table>
+</center>
+</body>
