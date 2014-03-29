@@ -1,12 +1,18 @@
 DotVoting::Application.routes.draw do
+
+  devise_scope :user do
+    get "sign_in", to: "devise/sessions#new"
+  end
    
   devise_for :users
   resources :users
 
+  root to: "users#index"
+
   resources :rounds do
    resources :posts 
-   root to: "rounds#index"
   end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
