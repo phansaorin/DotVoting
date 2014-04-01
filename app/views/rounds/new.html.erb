@@ -1,19 +1,23 @@
-<h2>new round</h2>
-
-<%= form_for :round do |f| %>
-  <p>
-    <%= f.label :question %><br>
-    <%= f.text_area :question %>
-  </p>
-  <p>
-    <%= f.label :suggestion %><br>
-    <%= f.text_field :suggestion %>
-  </p>
-  <p>
-    <%= f.label :dealine %><br>
-    <%= f.text_field :deadline %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<div id="wrapper">
+  <center>
+    <h2>Add New Round</h2>
+    <%= form_for(@round) do |f| %>
+      <p>
+        <%= f.label :question %><br>
+        <%= f.text_area :question %>
+      </p>
+      <p>
+        <%= f.label :suggestion %><br>
+        <%= f.text_field :suggestion %>
+      </p>
+      <p>
+        <%= f.label :dealine %><br>
+        <%= f.text_field :deadline %>
+      </p>
+      <p>
+        <%= f.submit "Submit", class: "btn btn-info" %>
+        <%= link_to '<input value="Back" type="button" class="btn btn-info" />'.html_safe, rounds_path %>
+      </p>
+    <% end %>
+  </center>
+</div>

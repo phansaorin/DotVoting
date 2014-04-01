@@ -22,6 +22,15 @@
   background-color: #eee;
 }
 
+#wrapper{
+  /*width: 100%;*/
+  height: auto;
+  border: 1px solid red;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding-top: 15px;
+}
+
 .form-signin {
   max-width: 330px;
   padding: 15px;

@@ -1,1 +1,49 @@
-<h2>hello would</h2>
+<div id="wrapper">
+	<div class="container-fluid">
+        <div class="row-fluid">
+          	<div class="span2">
+          		<h3>Action</h3>
+                <ul class="nav nav-tabs nav-stacked">
+			    	<li><a href="#">Management</a></li>
+					<li><a href="#">User</a></li>
+					<li class="active"><a href="#">Question</a></li>
+			    </ul>
+          	</div>
+          	<div class="span10">
+          		<div class="span8">
+          			    <ul class="breadcrumb">
+						    <li><a href="#">Home</a> <span class="divider">/</span></li>
+						    <li class="active">Question</li>
+						</ul>
+          		</div>
+          		<div class="span4">
+          			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
+          		</div>
+          		    <table class="table table-bordered">
+          		    	<tr>
+							<th>No</th>
+							<th>Question</th>
+							<th>Deadline</th>
+							<th>Amount Answer</th>
+							<th>Action</th>
+							<th>Status</th>
+						</tr>
+					<% @rounds.each do |round| %>
+				    	<tr>
+							<td></td>
+							<td><%= round.question %></td>
+							<td><%= round.deadline %></td>
+							<td></td>
+							<td>
+								<span>View</span> |
+								<span>Edit</span> |
+								<span>Delete</span>
+							</td>
+							<td><%= round.suggestion %></td>
+						</tr>
+					<% end %>
+				    </table>
+          	</div>
+        </div>
+    </div>
+</div>

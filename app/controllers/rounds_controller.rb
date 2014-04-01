@@ -1,10 +1,12 @@
 class RoundsController < ApplicationController
   def index
-  	# @rounds = Round.all
+  	@rounds = Round.all
   end
+
   def new
-  	
+  	@round = Round.new
   end
+
   def create
   	  @round = Round.new
       @round.id = params[:round][:id]
@@ -12,13 +14,16 @@ class RoundsController < ApplicationController
       @round.suggestion = params[:round][:suggestion]
       @round.deadline = params[:round][:deadline]
       @round.save
-	   redirect_to @round
+	   redirect_to rounds_path
   end
+
   # private
   # def round_params
   #   params.require(:round).permit(:question, :suggestion, :deadline)
   # end
+
   def show
-  @round = Round.find(params[:id])
+    @round = Round.find(params[:id])
   end
+  
 end
