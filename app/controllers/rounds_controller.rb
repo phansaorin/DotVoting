@@ -1,6 +1,6 @@
 class RoundsController < ApplicationController
   def index
-  	# @rounds = Round.all
+  	 @rounds = Round.all
   end
   def new
   	
@@ -19,6 +19,6 @@ class RoundsController < ApplicationController
   #   params.require(:round).permit(:question, :suggestion, :deadline)
   # end
   def show
-  @round = Round.find(params[:id])
+  @rounds = Round.find(params[:id])
   end
 end

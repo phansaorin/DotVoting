@@ -1,1 +1,41 @@
-<h2>hello would</h2>
+
+<div id="navbar-inner" class="navbar-inner header">
+<span class="span-leave">EMPLOYEE MENAGEMNET</span>
+</div>
+<br>
+<br>
+<br>
+<div id="wrapper">
+	<!-- <div id='home-head'>
+		<h1>Round Management</h1>
+	</div> -->
+		
+	<p style="float:right;">
+		<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
+	</p>
+	<div id="form-user">
+		<table class="table table-hover">
+			<tr class="success">
+				<th>NO</th>
+				<th>Question</th>
+				<th>Deadline</th>
+				<th>Suggestion</th>
+				<th>Amout Answer</th>
+				<th>Action</th>
+				<th>Status</th>	
+			</tr>
+			<% @rounds.each do |round| %>
+			<tr>
+				<td><%= round.id %></td>
+				<td><%= round.question %></td>
+				<td><%= round.deadline %></td>
+				<td>6</td>
+				<td><%= round.suggestion %></td>
+				<td>delete</td>
+				<td>stop Suggestion</td>
+				
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
