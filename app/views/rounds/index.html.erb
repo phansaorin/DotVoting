@@ -46,7 +46,7 @@
 							<td>
 								<span><%= link_to '<button class="btn btn-success">Edit</button>'.html_safe, edit_round_path(round) %></span>
 								<span>View</span> |
-								<span>Delete</span>
+								<span><%= link_to '<button class="btn btn-danger">Delete</button>'.html_safe, round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %></span>
 							</td>
 							<td></td>
 						</tr>
