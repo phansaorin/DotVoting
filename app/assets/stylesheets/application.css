@@ -11,7 +11,6 @@
  *= require_self
  *= require_tree .
  *= require bootstrap.min
- *= require bootstrap-datepicker
  */
 /*
 * Chhing
@@ -20,6 +19,15 @@
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
+}
+
+#wrapper{
+  /*width: 100%;*/
+  height: auto;
+  border: 1px solid red;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding-top: 15px;
 }
 
 .form-signin {
