@@ -16,16 +16,17 @@
 			    </ul>
           	</div>
           	<div class="span10">
+          		<h3>Question Management</h3>
           		<div class="span8">
-          			    <ul class="breadcrumb">
-						    <li><a href="#">Home</a> <span class="divider">/</span></li>
-						    <li class="active">Question</li>
-						</ul>
+      			    <ul class="breadcrumb">
+					    <li><a href="#">Home</a> <span class="divider">/</span></li>
+					    <li class="active">Question</li>
+					</ul>
           		</div>
-          		<div class="span4">
+          		<div class="span2">
           			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
           		</div>
-          		    <table class="table table-hover">
+          		    <table class="table table-bordered">
           		    	<tr class="success">
 							<th>No</th>
 							<th>Question</th>
@@ -44,9 +45,10 @@
 							<td><%= round.suggestion %></td>
 							<td>
 								<span><%= link_to '<button class="btn btn-success">Edit</button>'.html_safe, edit_round_path(round) %></span>
-								<span>Edit</span> |
+								<span>View</span> |
 								<span>Delete</span>
 							</td>
+							<td></td>
 						</tr>
 					<% end %>
 				    </table>
