@@ -43,7 +43,7 @@
 							<td>6</td>
 							<td><%= round.suggestion %></td>
 							<td>
-								<span>View</span> |
+								<span><%= link_to '<button class="btn btn-success">Edit</button>'.html_safe, edit_round_path(round) %></span>
 								<span>Edit</span> |
 								<span>Delete</span>
 							</td>
