@@ -42,5 +42,11 @@ class RoundsController < ApplicationController
   def show
     @round = Round.find(params[:id])
   end
+  def destroy
+    @round = Round.find_by_id(params[:id])
+    @round.destroy
+    redirect_to rounds_path
+    flash.notice = "#{@round.question} has been deleted!"
+  end
   
 end
