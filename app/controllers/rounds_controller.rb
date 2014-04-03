@@ -41,6 +41,7 @@ class RoundsController < ApplicationController
 
   def show
     @round = Round.find(params[:id])
+    @round = Round.new
   end
   def destroy
     @round = Round.find_by_id(params[:id])
