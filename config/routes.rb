@@ -1,11 +1,21 @@
 DotVoting::Application.routes.draw do
 
+  devise_for :admins
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
   end
    
+  # devise_for :users
   devise_for :users
   resources :users
+
+  # devise_scope :user do 
+  #   get "user#new" => "users" 
+  # end
+
+  # devise_scope :user do
+  #   # get "/", :to => "users/users#new"
+  # end
 
   root to: "users#index"
 

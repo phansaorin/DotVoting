@@ -1,0 +1,60 @@
+
+<%= form_for @user, :url =>user_registration_path, :html => { :multipart => true } do |u| %>
+<div align='center'>
+	<table class="tbl-user">
+		<tr>
+			<td><%= u.label :first_name %></td>
+			<td>:</td>
+			<td><%= u.text_field :first_name, :placeholder => 'Enter first name', class: "form-control" %></td>
+		</tr>
+		<tr>
+			<td><%= u.label :last_name %></td>
+			<td>:</td>
+			<td><%= u.text_field :last_name, :placeholder => 'Enter last name', class: "form-control" %></td>
+		</tr>
+		<tr>
+			<td><%= u.label :gender %></td>
+			<td>:</td>
+			<td>	
+			    <%= u.label :gender, "Male", :value => "Male"  %>
+			    <%= u.radio_button :gender, 'Male' %>
+			    <%= u.label :gender, "Female", :value => "Female" %>
+			    <%= u.radio_button :gender, 'Female' %>
+			</td>
+		</tr>
+		<tr>
+			<td><%= u.label :password %></td>
+			<td>:</td>
+			<td><%= u.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "Enter Password", required: true %></td>
+		</tr>
+		<tr>
+			<td><%= u.label :password_confirmation %></td>
+			<td>:</td>
+			<td><%= u.password_field :password_confirmation, autocomplete: "off", :class => "form-control", :placeholder => "Re-enter Password", required: true %></td>
+		</tr>
+		<tr>
+			<td><%= u.label :email %></td>
+			<td>:</td>
+			<td><%= u.email_field :email, :placeholder => 'Enter email address', class: "form-control" %></td>
+		</tr>
+		<tr>
+			<td><%= label_tag 'Phone Number' %></td>
+			<td>:</td>
+			<td><%= u.text_field :phone_num, :placeholder => 'Enter phone number', class: "form-control" %></td>
+		</tr>
+		<tr>
+			<td><%= u.label :address %></td>
+			<td>:</td>
+			<td>
+				<%= u.text_area :address, :placeholder => 'Write your address here...', size: "50x5", class: "form-control" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<%= u.submit "Submit", class: "btn btn-info" %>
+				<%= link_to '<input value="Back" type="button" class="btn btn-info" />'.html_safe, users_path %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %> 
