@@ -1,0 +1,33 @@
+
+<%= form_for @round , :html => { :multipart => true } do |f| %>
+<div align='center'>
+  <table class="tbl-user">
+    <tr>
+      <td><%= f.label :question %></td>
+      <td>:</td>
+      <td><%= f.text_area :question, :placeholder => 'Enter Question' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :suggestion %></td>
+      <td>:</td>
+      <td><%= f.text_field :suggestion, :placeholder => 'Enter Suggestion' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :dealine %></td>
+      <td>:</td>
+     <td><%= f.text_field :deadline, :id => "datepicker", :value => Date.today, class: "form-control" %></td>
+    </tr>
+    <tr>
+    <tr>
+      <td colspan="3">
+        <%= f.submit "Submit", class: "btn btn-info" %>
+        <%= link_to '<input value="Back" type="button" class="btn btn-info" />'.html_safe, rounds_path %>
+      </td>
+    </tr>
+  </table>
+  <script>
+$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+</script>
+  <% end %>
+
+

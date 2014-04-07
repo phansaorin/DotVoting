@@ -1,19 +1,6 @@
-<h2>new round</h2>
-
-<%= form_for :round do |f| %>
-  <p>
-    <%= f.label :question %><br>
-    <%= f.text_area :question %>
-  </p>
-  <p>
-    <%= f.label :suggestion %><br>
-    <%= f.text_field :suggestion %>
-  </p>
-  <p>
-    <%= f.label :dealine %><br>
-    <%= f.text_field :deadline %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<div id="wrapper">
+  <div class="user-action">
+    <h1 align="center">Add New Question</h1>
+    <%= render partial: 'rounds/form' %>
+  </div>
+</div>

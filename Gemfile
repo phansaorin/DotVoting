@@ -5,7 +5,8 @@ gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-
+# gem 'jquery-ui-rails'
+gem 'bootstrap-datepicker-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -34,6 +35,8 @@ group :doc do
 end
 
 gem 'devise'
+
+gem 'bootstrap-datepicker-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

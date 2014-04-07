@@ -8,6 +8,7 @@ DotVoting::Application.routes.draw do
   # devise_for :users
   devise_for :users
   resources :users
+  resources :rounds
 
   # devise_scope :user do 
   #   get "user#new" => "users" 
@@ -18,10 +19,6 @@ DotVoting::Application.routes.draw do
   # end
 
   root to: "users#index"
-
-  resources :rounds do
-   resources :posts 
-  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

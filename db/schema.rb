@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140403093035) do
     t.date     "deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "users", force: true do |t|

@@ -9,5 +9,12 @@ class UsersController < ApplicationController
 		@user = User.new
 		# super
 	end
-	
+
+	def destroy
+		@user = User.find_by_id(params[:id])
+		@user.destroy
+		redirect_to users_path
+		flash.notice = "#{@user.first_name} #{@user.last_name} has been deleted!"
+	end
+
 end
