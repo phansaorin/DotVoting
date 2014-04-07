@@ -44,9 +44,13 @@
 							<td>6</td>
 							<td><%= round.suggestion %></td>
 							<td>
-								<span><%= link_to '<button class="btn btn-success">Edit</button>'.html_safe, edit_round_path(round) %></span>
-								<span>View</span> |
-								<span><%= link_to '<button class="btn btn-danger">Delete</button>'.html_safe, round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %></span>
+								<span>
+									<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
+								</span> 
+								&nbsp;
+								<span>
+									<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
+								</span>
 							</td>
 							<td></td>
 						</tr>
