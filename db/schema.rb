@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328083935) do
+ActiveRecord::Schema.define(version: 20140403013013) do
 
   create_table "rounds", force: true do |t|
     t.string   "question"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140328083935) do
     t.date     "deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "users", force: true do |t|
