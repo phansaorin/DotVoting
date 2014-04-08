@@ -9,7 +9,7 @@ DotVoting::Application.routes.draw do
   resources :rounds do
     post :status, on: :member
   end
-  resources :gifts do
+  resources :votes do
 
   end
   root to: "users#index"
