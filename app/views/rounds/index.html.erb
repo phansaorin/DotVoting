@@ -45,10 +45,15 @@
 							<td><%= round.suggestion %></td>
 							<td>
 								<span><%= link_to '<button class="btn btn-success">Edit</button>'.html_safe, edit_round_path(round) %></span>
-								<span>View</span> |
 								<span><%= link_to '<button class="btn btn-danger">Delete</button>'.html_safe, round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %></span>
 							</td>
-							<td></td>
+							<td>
+							<% if round.status == 1 %>
+								<span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
+								<% elsif round.status == 0 %>
+								<span><%= link_to '<button class="btn btn-danger">Disable</button>'.html_safe, status_round_path(round, :status => 1), method: :post %></span>
+							<% end %>
+							</td>
 						</tr>
 					<% end %>
 				    </table>

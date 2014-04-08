@@ -34,6 +34,12 @@ class RoundsController < ApplicationController
       flash.alert = "Update failed! Please try again!"
     end
   end
+  def status
+     round = Round.find_by_id(params[:id])
+     round.status = params[:status]
+     round.save!
+     redirect_to rounds_path
+  end
   # private
   # def round_params
   #   params.require(:round).permit(:question, :suggestion, :deadline)

@@ -3,11 +3,12 @@ DotVoting::Application.routes.draw do
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
   end
-   
+  get 'round/status', to: 'round#status'
   devise_for :users
   resources :users
-  resources :rounds
-
+  resources :rounds do
+    post :status, on: :member
+  end
   root to: "users#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
