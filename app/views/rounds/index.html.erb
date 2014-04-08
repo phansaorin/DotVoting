@@ -1,9 +1,6 @@
-<div id="navbar-inner" class="navbar-inner header">
+<!-- <div id="navbar-inner" class="navbar-inner header">
 <span class="span-leave">ROUND MENAGEMNET</span>
-</div>
-<br>
-<br>
-<br>		
+</div> -->	
 <div id="wrapper">
 	<div class="container-fluid">
         <div class="row-fluid">
@@ -17,14 +14,9 @@
           	</div>
           	<div class="span10">
           		<h3>Question Management</h3>
-          		<div class="span8">
-      			    <ul class="breadcrumb">
-					    <li><a href="#">Home</a> <span class="divider">/</span></li>
-					    <li class="active">Question</li>
-					</ul>
-          		</div>
-          		<div class="span2">
+          		<p>
           			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
+<<<<<<< HEAD
           		</div>
           		    <table class="table table-bordered">
           		    	<tr class="success">
@@ -50,18 +42,46 @@
 								<span>
 									<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
 								</span>
+=======
+          		</p>
+      		    <table class="table table-bordered">
+      		    	<tr class="success">
+						<th>No</th>
+						<th>Question</th>
+						<th>Deadline</th>
+						<th>Amount Answer</th>
+						<th>Suggestion</th>
+						<th>Action</th>
+						<th>Status</th>
+					</tr>
+				<% @rounds.each do |round| %>
+			    	<tr>
+						<td><%= round.id %></td>
+						<td><%= round.question %></td>
+						<td><%= round.deadline %></td>
+						<td>6</td>
+						<td><%= round.suggestion %></td>
+						<td>
+							<span>
+								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
+							</span> 
+							&nbsp;
+							<span>
+								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
+							</span>
+>>>>>>> 4e702ae883b2771b9fcc95cd2d3bde14aa5a9921
 
-							</td>
-							<td>
-							<% if round.status == 1 %>
-								<span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
-								<% elsif round.status == 0 %>
-								<span><%= link_to '<button class="btn btn-danger">Disable</button>'.html_safe, status_round_path(round, :status => 1), method: :post %></span>
-							<% end %>
-							</td>
-						</tr>
-					<% end %>
-				    </table>
+						</td>
+						<td>
+						<% if round.status == 1 %>
+							<span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
+							<% elsif round.status == 0 %>
+							<span><%= link_to '<button class="btn btn-danger">Disable</button>'.html_safe, status_round_path(round, :status => 1), method: :post %></span>
+						<% end %>
+						</td>
+					</tr>
+				<% end %>
+			    </table>
           	</div>
         </div>
     </div>

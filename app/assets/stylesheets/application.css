@@ -16,7 +16,7 @@
 * Chhing
 */
  body {
-  padding-top: 40px;
+  /*padding-top: 40px;*/
   padding-bottom: 40px;
   background-color: #eee;
 }
@@ -29,6 +29,12 @@
   border-radius: 5px;
   padding-top: 15px;
 }*/
+
+#header{
+  background-color: #7fe4ab;
+  height: auto;
+  padding: 10px 20px;
+}
 
 #wrapper{
   width: 95%;
