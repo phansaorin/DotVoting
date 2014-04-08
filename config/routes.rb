@@ -3,11 +3,14 @@ DotVoting::Application.routes.draw do
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
   end
-  get 'round/status', to: 'round#status'
+  # get 'round/status', to: 'round#status'
   devise_for :users
   resources :users
   resources :rounds do
     post :status, on: :member
+  end
+  resources :gifts do
+
   end
   root to: "users#index"
 
