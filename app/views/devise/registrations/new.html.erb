@@ -1,21 +1,39 @@
-<div class="container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => "form-signin", :role => "form" }) do |f| %>
+
+<div class="form_user">
+ <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => "form-signin", :role => "form" }) do |f| %>
   <%= devise_error_messages! %>
+
   <h2 class="form-signin-heading">Sign up</h2>
+      <div class="control-group">
+          <%= f.label :email, :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :email, :class => "span4", autofocus: true, :placeholder => "Email address", required: true %>
+          </div>
+          
+      </div>
+      <div class="control-group">
+          <%= f.label :password, :class => "control-label" %>
+          <div class="controls">
+          <%= f.password_field :password, :class => "span4", autocomplete: "off", :placeholder => "Password", required: true %>
+          </div>
+      </div>
+      <div class="control-group">
+          <%= f.label :password_confirmation, :class => "control-label" %>
+          <div class="controls">
+          <%= f.password_field :password_confirmation, :class => "span4", autocomplete: "off", :placeholder => "Password", required: true  %>
+          </div>
+      </div>
+      <div class="control-group">
+          <div class="controls">
+          <label class="checkbox">
+          <input type="checkbox"> Remember me
+          </label>
+          <%= f.submit "Sign up", :class => "btn btn-primary" %>
+          </div>
+      </div>
+       <%= render "devise/shared/links" %>
+    <% end %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email address", required: true %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "Password", required: true %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control", :placeholder => "Password", required: true  %></div>
-
-  <div><%= f.submit "Sign up", :class => "btn btn-lg btn-primary btn-block" %></div>
-
-  <%= render "devise/shared/links" %>
-
-<% end %>
-</div>
+  </div>
+    
