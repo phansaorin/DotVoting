@@ -16,33 +16,6 @@
           		<h3>Question Management</h3>
           		<p>
           			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
-<<<<<<< HEAD
-          		</div>
-          		    <table class="table table-bordered">
-          		    	<tr class="success">
-							<th>No</th>
-							<th>Question</th>
-							<th>Deadline</th>
-							<th>Amount Answer</th>
-							<th>Suggestion</th>
-							<th>Action</th>
-							<th>Status</th>
-						</tr>
-					<% @rounds.each do |round| %>
-				    	<tr>
-							<td><%= round.id %></td>
-							<td><%= round.question %></td>
-							<td><%= round.deadline %></td>
-							<td>6</td>
-							<td><%= round.suggestion %></td>
-							<td>
-									<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
-								</span> 
-								&nbsp;
-								<span>
-									<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
-								</span>
-=======
           		</p>
       		    <table class="table table-bordered">
       		    	<tr class="success">
@@ -69,8 +42,6 @@
 							<span>
 								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
 							</span>
->>>>>>> 4e702ae883b2771b9fcc95cd2d3bde14aa5a9921
-
 						</td>
 						<td>
 						<% if round.status == 1 %>
