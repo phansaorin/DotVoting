@@ -20,13 +20,14 @@
 	    <br>
 	    <div class="navbar">
 			<div class="navbar-inner">
+				
 				<ul class="nav">
-					<li class="active">
+					<li class="<%= 'active' if params[:controller] == 'users_controller' %>">
 						<%= link_to "Home", users_path %>
 					</li>
-					<li>
-						<%= link_to "Round", rounds_path %>
-					</li>
+					<li class="<%= 'active' if params[:controller] == 'rounds_controller' %>">
+						<%= link_to "Round", rounds_path %> 
+					</li>       
 				</ul>
 			</div>
 		</div>
