@@ -7,11 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%if user_signed_in?%>
-	<p>Welcome <%= current_user.email %></p>
-	<%= link_to "Settings", edit_user_registration_path%> |
-	<%= link_to "Log out", destroy_user_session_path, method: :delete%> 
-<%end%>
+	<div id="header">
+		<div class="row">
+		    <div class="span12">
+		    	<%if user_signed_in?%>
+					<p><span style="color:#fff;">Welcome</span> <%= current_user.email %></p>
+					<%= link_to "Settings", edit_user_registration_path%> |
+					<%= link_to "Log out", destroy_user_session_path, method: :delete%> 
+				<%end%>
+		    </div>
+	    </div>
+	    <br>
+	    <div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li class="active">
+						<%= link_to "Home", users_path %>
+					</li>
+					<li>
+						<%= link_to "Round", rounds_path %>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
 <% if notice %>
   <p class="alert alert-notice"><%= notice %></p>
