@@ -1,24 +1,36 @@
 <div id="wrapper">
 	<div id='home-head'>
-		<h1>All Questions</h1>
+		<h1>Questions</h1>
 	</div>
-	<div class="navbar">
-		<div class="navbar-inner">			
-			<ul class="nav">
-				<li class="<%= 'active' if params[:controller] == 'users_controller' %>">
-					<%= link_to "Home", users_path %>
-				</li>
-				<li class="<%= 'active' if params[:controller] == 'rounds_controller' %>">
-					<%= link_to "Vote", votes_path %> 
-				</li>       
-			</ul>
-		</div>
-	</div>
+	
 	<div class="blog-summary">
-		<% @rounds.each do |round| %>	
-		<%= round.id %><br/>
-		<%= round.question %>Answers : 4(<%= round.deadline %>) <a href="">More Answer</a>
-		<% end %>
+		<div class="row">
+			<div class="span12" style="width: 98.4%;">
+			    <ul class="nav nav-tabs">
+				    <li class="active"><a href="#">All Questions</a></li>
+				    <li><a href="#">Voting</a></li>
+			    </ul>
+			</div>
+		</div>
+
+	    <table class="table table-striped">
+	    	<tr>
+	    		<th>No</th>
+	    		<th>Question</th>
+	    		<th>Answer</th>
+	    		<th>Deadline</th>
+	    		<th>More Answer</th>
+	    	</tr>
+	    <% @rounds.each do |round| %>
+	    	<tr>
+	    		<td><%= round.id %></td>
+	    		<td><%= round.question %></td>
+	    		<td>4</td>
+	    		<td><%= round.deadline %></td>
+	    		<td><a href="#">Add</a></td>
+	    	</tr>
+	    <% end%>
+		</table>
 	</div>
 </div><!-- end wrapper -->
 
