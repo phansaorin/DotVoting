@@ -19,16 +19,16 @@
 			    <ul class="nav nav-tabs">
 				    <li class="active"><a href="#">Home</a></li>
 				    <li><a href="#">Voting</a></li>
-	          </ul>
+	            </ul>
 	        </div>
 		</div>
+		
 	</section>
 <section>
 <div class="blog-summary">
 	<% @rounds.each do |round| %>	
 	<%= round.id %><br/>
-	<%= round.question %>Answers : 4(<%= round.deadline %>) <a href="">More Answer</a>
+	<%= link_to (round.question) %>Answers : 4(<%= round.deadline %>) <a href="#">More Answer</a>
 	<% end %>
 </div>
-
 <div>

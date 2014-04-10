@@ -9,7 +9,9 @@ DotVoting::Application.routes.draw do
   resources :rounds do
   post :status, on: :member
   end
-  resources :votes 
+  resources :votes do
+  post :question, on: :member
+  end
   root to: "users#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
