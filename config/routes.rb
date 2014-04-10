@@ -7,11 +7,9 @@ DotVoting::Application.routes.draw do
   devise_for :users
   resources :users
   resources :rounds do
-    post :status, on: :member
+  post :status, on: :member
   end
-  resources :votes do
-
-  end
+  resources :votes 
   root to: "users#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
