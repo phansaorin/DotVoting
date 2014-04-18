@@ -115,6 +115,7 @@ tr.success {
 /*end of home of round*/
 .form-signin input[type="email"] {
   margin-bottom: -1px;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 .form-signin input[type="password"] {
@@ -126,8 +127,9 @@ tr.success {
     border: 1px solid #E5E5E5;
     border-radius: 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    width: 600px;
     margin: auto;
-    width: 400px;
+    margin-top: 10px;
 }
 
 body {
