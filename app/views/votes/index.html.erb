@@ -16,21 +16,20 @@
 	</section>
 <section>
 <div class="blog-summary">
-	<% @rounds.each do |round| %>	
+	<!--<% @rounds.each do |round| %>	
 	<%= round.id %><br/>
 	<%= link_to (round.question) %>Answers : 4(<%= round.deadline %>) <a href="#">More Answer</a>
-	<% end %>
+	<% end %>-->
 	  <table class="table table-striped">
 	    	<tr>
 	    		<th>All Question</th>
-	    
-	    		
-	    	</tr>
+	    		<th></th>
+			</tr>
 	    <% @rounds.each do |round| %>
 	    	<tr>
 	    		<td><%= round.id %></td>
-	    		<td><%= round.question %><%= round.deadline %></td>
-	    		<td>4</td>
+	    		<td><%= link_to (round.question) %>Answers : 4(<%= round.deadline %>) <a href="#">More Answer</a></td>
+
 	    		
 	    	</tr>
 	    <% end%>
