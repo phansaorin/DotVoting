@@ -16,7 +16,7 @@
           		<h3>Question Management</h3>
           		<p>
           			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
-          		  
+          		</p>
       		    <table class="table table-bordered">
       		    	<tr class="success">
 						<th>No</th>
@@ -42,7 +42,6 @@
 							<span>
 								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
 							</span>
-
 						</td>
 						<td>
 						<% if round.status == 1 %>

@@ -8,28 +8,31 @@
 </head>
 <body>
 	<div id="header">
-		<div class="row">
-		    <div class="span12">
-		    	<%if user_signed_in?%>
-					<p><span style="color:#fff;">Welcome</span> <%= current_user.email %></p>
-					<%= link_to "Settings", edit_user_registration_path%> |
-					<%= link_to "Log out", destroy_user_session_path, method: :delete%> 
-				<%end%>
-		    </div>
+	    <div id="logo">
+	    	<a href="http://blog.stackoverflow.com/">
+				<%= link_to image_tag("codingate-logo.png", :alt => "Edit", :title => "Edit")%>
+			</a>
+		</div>
+		<div id="user-info">
+	    	<%if user_signed_in?%>
+				<p><span style="color:#fff;">Welcome</span> <%= current_user.email %></p>
+				<%= link_to "Settings", edit_user_registration_path%> |
+				<%= link_to "Log out", destroy_user_session_path, method: :delete%> 
+			<%end%>
 	    </div>
-	    <br>
-	    <div class="navbar">
-			<div class="navbar-inner">
+	    <!-- <br> -->
+	    <!-- <div class="navbar">
+			<div class="navbar-inner">			
 				<ul class="nav">
-					<li class="active">
+					<li class="<%= 'active' if params[:controller] == 'users_controller' %>">
 						<%= link_to "Home", users_path %>
 					</li>
-					<li>
-						<%= link_to "Round", rounds_path %>
-					</li>
+					<li class="<%= 'active' if params[:controller] == 'rounds_controller' %>">
+						<%= link_to "Round", rounds_path %> 
+					</li>       
 				</ul>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 <% if notice %>
