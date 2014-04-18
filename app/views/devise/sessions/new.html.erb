@@ -1,35 +1,37 @@
 
 
 <div class="form_user">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => "form-signin", :role => "form" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :role => "form" }) do |f| %>
   <h2 class="form-signin-heading">Sign in</h2>
-  <form class="form-horizontal">
-    <div class="control-group">
-      <%= f.label :email, :class => "control-label"  %>
-      <div class="controls"> 
-      <%= f.email_field :email, :class => "span4", autofocus: true, :placeholder =>"Email address", required: true  %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :password %>
-      <div class="controls"> 
-        <%= f.password_field :password, :class => "span4", autocomplete: "off", :placeholder => "Password", required: true %>
-      </div>
-    </div>
-   
-     <div class="control-group">
-          <div class="controls">
-          <label class="checkbox">
-          <% if devise_mapping.rememberable? -%>
-          <%= f.check_box :remember_me %> 
-          <%= f.label :remember_me, :class => "checkbox" %>
-          <% end -%>
-          </label>
-          <%= f.submit "Sign in", :class => "btn btn-primary" %>
-          </div>
-      </div>
 
-    <%= render "devise/shared/links" %>
+    <table class="registerform">
+       <tr>
+            <td><%= f.label :email, :class => "span3" %></td>
+            <td><%= f.email_field :email, autofocus: true, :placeholder => "Email address", required: true %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :password, :class => "span3" %></td>
+            <td> <%= f.password_field :password, autocomplete: "off", :placeholder => "Password", required: true %></td>
+       </tr>
+        <tr>
+            <td>
+                  <% if devise_mapping.rememberable? -%>
+                  <%= f.check_box :remember_me %><%= f.label :remember_me, :class => "checkbox" %>
+                  <% end -%>
+            </td>
+            <td>
+                 
+                  <%= f.submit "Sign in", :class => "btn btn-primary" %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= render "devise/shared/links" %></td>
+        </tr>
+    
+
+     </table>  
+
   <% end %>
 
 </div>
