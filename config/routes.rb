@@ -7,7 +7,8 @@ DotVoting::Application.routes.draw do
   devise_for :users
   resources :users
   resources :rounds do
-  post :status, on: :member
+    post :status, on: :member
+    resources :comments
   end
   resources :votes do
   post :question, on: :member

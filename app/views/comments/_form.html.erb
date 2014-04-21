@@ -1,0 +1,15 @@
+<%= form_for [@round, @comment] , :html => { :multipart => true } do |f| %>
+<div align='center'>
+  <table class="tbl-comment">
+    <tr>
+      <td><%= f.label :txt_comment %></td>
+      <td>:</td>
+      <td><%= f.text_area :txt_comment, :placeholder => 'Enter Comment ...' %></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <%= f.submit "Submit", class: "btn btn-info" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
