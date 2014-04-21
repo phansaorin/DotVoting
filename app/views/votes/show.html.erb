@@ -14,16 +14,6 @@
 
 		<%= "#{@question_id}." %><%= @round.question %>
 
-		<p>Comment list</p>
-
-		<% @comments.each do |c|%>
-			<p> <%= c.user.email %> : <%= c.txt_comment %></p>
-		<%end%>
-
-		<p>Login User : <%= current_user.email %></p>
-
-		<%= render partial: 'comments/form' %>
-
 		<!-- <h4>Comment</h4>
 
 		<table>
