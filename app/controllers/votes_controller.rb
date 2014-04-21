@@ -9,7 +9,10 @@ class VotesController < ApplicationController
 	# @round = Round.new
  # end
  def show
-  	@question_id = params[:id]
-  	@round = Round.find(params[:id])
+ 	@question_id = params[:id]
+ 	@round = Round.find(@question_id)
+  	@comment = Comment.new
+  	@round = Round.find(@question_id)
+  	@comments = Comment.where("round_id=?", @question_id)#.find_by(round_id: @question_id)
  end
 end
