@@ -4,56 +4,28 @@
 	</div> -->
 	
 	<div class="blog-summary">
-		<div class="row">
+		<!-- <div class="row">
 			<div class="span12" style="width: 98.4%;">
 			    <ul class="nav nav-tabs">
 				    <li class="active"><a href="#">All Questions</a></li>
 				    <li><a href="#">Voting</a></li>
 	            </ul>
 	        </div>
-		</div>
-		
-	</section>
-<section>
-<div class="blog-summary">
-	<!--<% @rounds.each do |round| %>	
-	<%= round.id %><br/>
-	<%= link_to (round.question) %>Answers : 4(<%= round.deadline %>) <a href="#">More Answer</a>
-	<% end %>-->
-	  <table class="table table-striped">
-	    	<tr>
-	    		<th>All Question</th>
-	    		<th></th>
-			</tr>
-	    <% @rounds.each do |round| %>
-	    	<tr>
-	    		<td><%= round.id %></td>
-	    		<td><%= link_to (round.question) %>Answers : 4(<%= round.deadline %>) <a href="#">More Answer</a></td>
+		</div> -->
 
-	    		
-	    	</tr>
-	    <% end%>
-		</table>
-		<table>
-			<tr>
-				<td>Name :</td>
-				<td><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<td>Descrtion :</td>
-				<td><textarea></textarea></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><button type="button" class="btn btn-info">Add New</button></td>
-			</tr>
-		</table>
-</div>
-	 </ul>
+		<h4>Question</h4>
 
-		</div>
-        </div>
+		<table class="table">
+			<% @rounds.each do |round| %>
+	    		<tr>
+	    			<td><%= round.id %></td>
+	    			<td><%= link_to (round.question), vote_path(round) %></td>
+	    			<td>Answers : 4 (<%= round.deadline %>)</td>
+	    			<td><a href="#">More Answer</a></td>
+	    		</tr>
+    		<% end %>
+    	</table>
 
-		</div>
+	</div>
 </div><!-- end wrapper -->
 

@@ -1,2 +1,47 @@
+<div id="wrapper-font">
+	
+	<div class="blog-summary">
+		<!-- <div class="row">
+			<div class="span12" style="width: 98.4%;">
+			    <ul class="nav nav-tabs">
+				    <li><a href="#">All Questions</a></li>
+				    <li class="active"><a href="#">Voting</a></li>
+	            </ul>
+	        </div>
+		</div> -->
 
-ffff
+		<h4>Voting</h4>
+
+		<%= "#{@question_id}." %><%= @round.question %>
+
+
+		<% if(@comments.count != 0) %>
+			<p>Comment list</p>
+			<% @comments.each do |c|%>
+				<p> <%= c.user.email %> : <%= c.txt_comment %>  </p>
+			<% end %>
+			<b>Total Comment </b><%= @comments.count %>
+		<% end %>
+
+		
+
+		<p>Login User : <%= current_user.email %></p>
+		<%= render partial: 'comments/form' %>
+
+
+		<!-- <h4>Comment</h4>
+
+		<table>
+			<tr>
+				<td>Descrtion :</td>
+				<td><textarea></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button type="button" class="btn btn-info">Add Comment</button></td>
+			</tr>
+		</table> -->
+
+	</div>
+</div><!-- end #wrapper-end -->
+
