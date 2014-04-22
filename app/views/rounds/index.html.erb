@@ -8,9 +8,9 @@
           		<h3>Action</h3>
                 <ul class="nav nav-tabs nav-stacked">
 			    	<li><a href="#">Management</a></li>
-					<li><a href="#">User</a></li>
-					<li class="active"><a href="#">Round</a></li>
-					<li class="#"><a href="#">Suggestion</a></li>
+					<li><%= link_to 'User',users_path %></li>
+					<li class="active"><%= link_to "Round",rounds_path%></li>
+					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
 			    </ul>
           	</div>
           	<div class="span10">
@@ -45,11 +45,7 @@
 							</span>
 						</td>
 						<td>
-						<% if round.status == 1 %>
-							<span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
-							<% elsif round.status == 0 %>
-							<span><%= link_to '<button class="btn btn-danger">Disable</button>'.html_safe, status_round_path(round, :status => 1), method: :post %></span>
-						<% end %>
+	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
 						</td>
 					</tr>
 				<% end %>
