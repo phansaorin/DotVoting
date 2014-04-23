@@ -10,37 +10,20 @@
 	        </div>
 		</div> -->
 
-		<h4>Voting</h4>
+		<h2>Voting</h2>
 
-		<%= "#{@question_id}." %><%= @round.question %>
+		<h4><%= "#{@question_id}. " %><%= @round.question %></h4>
 
 
 		<% if(@comments.count != 0) %>
-			<p>Comment list</p>
+			<h5>Comment List: <%= @comments.count %></h5>
 			<% @comments.each do |c|%>
-				<p> <%= c.user.email %> : <%= c.txt_comment %>  </p>
+				<p><%= c.user.email %>: <%= c.txt_comment %></p>
 			<% end %>
-			<b>Total Comment </b><%= @comments.count %>
 		<% end %>
 
-		
-
-		<p>Login User : <%= current_user.email %></p>
+		<!-- <p>Login User : <%= current_user.email %></p> -->
 		<%= render partial: 'comments/form' %>
-
-
-		<!-- <h4>Comment</h4>
-
-		<table>
-			<tr>
-				<td>Descrtion :</td>
-				<td><textarea></textarea></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><button type="button" class="btn btn-info">Add Comment</button></td>
-			</tr>
-		</table> -->
 
 	</div>
 </div><!-- end #wrapper-end -->

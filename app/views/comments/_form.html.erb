@@ -1,14 +1,15 @@
 <%= form_for [@round, @comment] do |f| %>
-<div align='center'>
   <table class="tbl-comment">
     <tr>
-      <td><%= f.label :txt_comment %></td>
+      <td><%= f.label "Comment" %></td>
       <td>:</td>
-      <td><%= f.text_area :txt_comment, :placeholder => 'Enter Comment ...' %></td>
+      <td><%= f.text_area :txt_comment, :placeholder => 'Enter Your Comment ...' %></td>
     </tr>
     <tr>
-      <td colspan="3">
-        <%= f.submit "Submit", class: "btn btn-info" %>
+      <td></td>
+      <td colspan="2">
+        <%= f.submit "Add Comment", class: "btn btn-info" %>
+        <%= button_tag 'Reset', :type => 'reset', class: "btn btn-info" %>
       </td>
     </tr>
   </table>
