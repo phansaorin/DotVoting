@@ -1,4 +1,4 @@
-<div id="wrapper">
+<!-- <div id="wrapper">
 	<div class="container-fluid">
         <div class="row-fluid">
           	<div class="span2">
@@ -21,4 +21,62 @@
 						<th>Suggestion</th>
 						<th>Action</th>
 					</tr>
-					
+					 -->
+
+
+
+<!-- <div id="navbar-inner" class="navbar-inner header">
+<span class="span-leave">ROUND MENAGEMNET</span>
+</div> -->	
+<div id="wrapper">
+	<div class="container-fluid">
+        <div class="row-fluid">
+          	<div class="span2">
+          		<h3>Action</h3>
+                <ul class="nav nav-tabs nav-stacked">
+			    	<li><a href="#">Management</a></li>
+					<li><%= link_to 'User',users_path %></li>
+					<li class="active"><%= link_to "Round",rounds_path%></li>
+					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
+			    </ul>
+          	</div>
+          	<div class="span10">
+          		<h3>Round Management</h3>
+          		<p>
+          			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
+          		</p>
+      		    <table class="table table-bordered">
+      		    	<tr class="success">
+						<th>No</th>
+						<th>Round</th>
+						<th>Deadline</th>
+						<th>Amount Answer</th>
+						<th>Suggestion</th>
+						<th>Action</th>
+						<!-- <th>Status</th> -->
+					</tr>
+				<% @suggestions.each do |round| %>
+			    	<tr>
+						<td><%= round.id %></td>
+						<td><%= round.question %></td>
+						<td><%= round.deadline %></td>
+						<td>6</td>
+						<td><%= round.suggestion %></td>
+						<td>
+							<span>
+								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
+							</span> 
+							&nbsp;
+							<span>
+								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
+							</span>
+						</td>
+						<!-- <td>
+	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
+						</td> -->
+					</tr>
+				<% end %>
+			    </table>
+          	</div>
+        </div>
+    </div>
