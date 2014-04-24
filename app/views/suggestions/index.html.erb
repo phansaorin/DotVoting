@@ -1,3 +1,30 @@
+<!-- <div id="wrapper">
+	<div class="container-fluid">
+        <div class="row-fluid">
+          	<div class="span2">
+          		<h3>Action</h3>
+                <ul class="nav nav-tabs nav-stacked">
+			    	<li><a href="#">Management</a></li>
+					<li><a href="#">User</a></li>
+					<li class="#"><a href="#">Round</a></li>
+					<li class="active"><a href="#">Suggestion</a></li>
+			    </ul>
+          	</div>
+          	<div class="span10">
+          		<h3>Suggestion Management</h3>
+      		    <table class="table table-bordered">
+      		    	<tr class="success">
+						<th>No</th>
+						<th>Round</th>
+						<th>Deadline</th>
+						<th>Amount Answer</th>
+						<th>Suggestion</th>
+						<th>Action</th>
+					</tr>
+					 -->
+
+
+
 <!-- <div id="navbar-inner" class="navbar-inner header">
 <span class="span-leave">ROUND MENAGEMNET</span>
 </div> -->	
@@ -26,9 +53,9 @@
 						<th>Amount Answer</th>
 						<th>Suggestion</th>
 						<th>Action</th>
-						<th>Status</th>
+						<!-- <th>Status</th> -->
 					</tr>
-				<% @rounds.each do |round| %>
+				<% @suggestions.each do |round| %>
 			    	<tr>
 						<td><%= round.id %></td>
 						<td><%= round.question %></td>
@@ -44,9 +71,9 @@
 								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
 							</span>
 						</td>
-						<td>
+						<!-- <td>
 	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
-						</td>
+						</td> -->
 					</tr>
 				<% end %>
 			    </table>

@@ -1,2 +1,30 @@
+<div id="wrapper-font">
+	
+	<div class="blog-summary">
+		<!-- <div class="row">
+			<div class="span12" style="width: 98.4%;">
+			    <ul class="nav nav-tabs">
+				    <li><a href="#">All Questions</a></li>
+				    <li class="active"><a href="#">Voting</a></li>
+	            </ul>
+	        </div>
+		</div> -->
 
-ffff
+		<h2>Voting</h2>
+
+		<h4><%= "#{@question_id}. " %><%= @round.question %></h4>
+
+
+		<% if(@comments.count != 0) %>
+			<h5>Comment List: <%= @comments.count %></h5>
+			<% @comments.each do |c|%>
+				<p><%= c.user.email %>: <%= c.txt_comment %></p>
+			<% end %>
+		<% end %>
+
+		<!-- <p>Login User : <%= current_user.email %></p> -->
+		<%= render partial: 'comments/form' %>
+
+	</div>
+</div><!-- end #wrapper-end -->
+
