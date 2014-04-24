@@ -1,7 +1,9 @@
 class RoundsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
   	# @rounds = Round.all
-    @rounds = Round.find_all_by_status(0)
+    @rounds = Round.find_all_by_status(false)
   end
 
   def new
@@ -12,9 +14,7 @@ class RoundsController < ApplicationController
   	  @round = Round.new
       @round.id = params[:round][:id]
       @round.question = params[:round][:question]
-      @round.suggestion = params[:round][:suggestion]
       @round.deadline = params[:round][:deadline]
-      @round.status = 0
       @round.save
 	   redirect_to rounds_path
   end
@@ -27,7 +27,6 @@ class RoundsController < ApplicationController
   def update
       @round = Round.find_by_id(params[:id])
       @round.question = params[:round][:question]
-      @round.suggestion = params[:round][:suggestion]
       @round.deadline = params[:round][:deadline]
     if @round.save
       redirect_to rounds_path
@@ -39,10 +38,9 @@ class RoundsController < ApplicationController
   end
 
   def status
-    # debugger
     if params[:status]
       @round = Round.find_by_id(params[:id])
-      @round.status = 1
+      @round.status = true
       if @round.save
         redirect_to rounds_path
         flash.notice = "#{@round.question} has been enable for suggestion!"

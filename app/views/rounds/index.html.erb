@@ -23,8 +23,6 @@
 						<th>No</th>
 						<th>Round</th>
 						<th>Deadline</th>
-						<th>Amount Answer</th>
-						<th>Suggestion</th>
 						<th>Action</th>
 						<th>Status</th>
 					</tr>
@@ -33,8 +31,6 @@
 						<td><%= round.id %></td>
 						<td><%= round.question %></td>
 						<td><%= round.deadline %></td>
-						<td>6</td>
-						<td><%= round.suggestion %></td>
 						<td>
 							<span>
 								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
@@ -45,7 +41,7 @@
 							</span>
 						</td>
 						<td>
-	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
+	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => true), method: :post %></span>
 						</td>
 					</tr>
 				<% end %>

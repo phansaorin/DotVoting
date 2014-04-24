@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  before_action :authenticate_user!
   def index
   	@votes = Vote.all
   	@rounds = Round.all
