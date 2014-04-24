@@ -11,18 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409073421) do
+ActiveRecord::Schema.define(version: 20140418101320) do
 
-  create_table "rounds", force: true do |t|
-    t.string   "question"
-    t.string   "suggestion"
-    t.date     "deadline"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "status"
-  end
-
-  create_table "users", force: true do |t|
+  create_table "Users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -35,15 +26,19 @@ ActiveRecord::Schema.define(version: 20140409073421) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "gender"
-    t.integer  "phone_num"
-    t.string   "address"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "Users", ["email"], name: "index_users_on_email", unique: true
+  add_index "Users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "rounds", force: true do |t|
+    t.string   "question"
+    t.string   "suggestion"
+    t.date     "deadline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "status"
+  end
 
   create_table "votes", force: true do |t|
     t.datetime "created_at"

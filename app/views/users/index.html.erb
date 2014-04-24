@@ -24,22 +24,16 @@
 		<!-- <table id="user-info" border='1' cellpadding="0" cellspacing="0"> -->
 		<table class="table table-hover">
 			<tr style="background: #F5F5F5;">
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Gender</th>
+				
 				<th>Email</th>
-				<th>Phone Number</th>
-				<th>Address</th>
+				
 				<th>Action</th>
 			</tr>
 		<% @users.each do |user| %> 
 			<tr>
-				<td><%= user.first_name %></td>
-				<td><%= user.last_name %></td>
-				<td><%= user.gender %></td>
+				
 				<td><%= user.email %></td>
-				<td><%= user.phone_num %></td>
-				<td><%= user.address %></td>
+				
 				<td colspan="2">
 					<span><%= link_to '<button class="btn btn-success">Edit</button>'.html_safe %></span>
 
