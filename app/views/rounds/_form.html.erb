@@ -10,12 +10,20 @@
     <tr>
       <td><%= f.label :suggestion %></td>
       <td>:</td>
-      <td><%= f.text_field :suggestion, :placeholder => 'Enter Suggestion' %></td>
+      <td colspan="2">
+        <%= f.text_field :suggestion, :placeholder => 'Enter Suggestion' %>
+        <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td colspan="3"><p id="suggestion_list"></p></td>
     </tr>
     <tr>
       <td><%= f.label :dealine %></td>
       <td>:</td>
-     <td><%= f.text_field :deadline, :id => "datepicker", :value => Date.today, class: "form-control" %></td>
+      <td><%= f.text_field :deadline, :id => "datepicker", :value => Date.today, class: "form-control" %></td>
     </tr>
     <tr>
     <tr>
@@ -26,8 +34,23 @@
     </tr>
   </table>
   <script>
-$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
-</script>
+
+    // add suggestion
+
+    document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
+
+    function addSuggestion(){
+      var sugg = document.getElementById("round_suggestion").value;
+      document.getElementById("suggestion_list").innerHTML = sugg;
+    }
+
+    // date picker
+
+    $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+    function displayDate(){
+        document.getElementById("demo").innerHTML=Date();
+      }
+  </script>
   <% end %>
 
 
