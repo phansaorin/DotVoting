@@ -9,25 +9,16 @@
     <tr>
       <td><%= f.label "Suggestion" %></td>
       <td>:</td>
-     <td><%= f.text_field "suggestion", :id => "suggestion", :value => "", class: "form-control" %>
-      <%= link_to "Add".html_safe, "#", id: "add_answer", class: "add_answer" %>
-      <div id="div_answer"></div>
-      <!-- <input type="checkbox" value="basket_ball" name="answers[]" id="answers_"> -->
-      <!-- check_box_tag 'eula', 'accepted', false, disabled: true -->
-      </br>
-        <%= check_box_tag "answers[]", 'basket_ball' %> Basketball</br>
-        <%= check_box_tag "answers[]", 'ball' %> ball</br></br>
-
-<!-- session[:continent] ||= {}
-session[:continent][:filter] = params[:filter] -->
-
-      </ul>
-     </td>
+      <td><%= f.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "round_suggestion", :value => "", class: "form-control" %>
+        <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
+        </br>
+        <p id="suggestion_list"></p>
+      </td>
     </tr>
     <tr>
       <td><%= f.label :dealine %></td>
       <td>:</td>
-     <td><%= f.text_field :deadline, :id => "datepicker", :value => Date.today, class: "form-control" %></td>
+      <td><%= f.text_field :deadline, :id => "datepicker", :value => Date.today, class: "form-control" %></td>
     </tr>
     <tr>
     <tr>
@@ -38,8 +29,35 @@ session[:continent][:filter] = params[:filter] -->
     </tr>
   </table>
   <script>
-$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
-</script>
+
+    // add suggestion
+
+    document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
+
+    function addSuggestion(){
+      var elementObj = document.getElementById("suggestion_list");
+      var inputObj = document.getElementById("round_suggestion");
+
+      var checkBox = document.createElement("INPUT");
+      var answer = inputObj.value;
+      checkBox.setAttribute("type", "checkbox");
+      checkBox.setAttribute("value", answer);
+      checkBox.setAttribute("name", "answers[]");
+      checkBox.setAttribute("class", "answers");
+      checkBox.setAttribute("checked", "checked");
+      elementObj.appendChild(checkBox);
+      $("p#suggestion_list").append(" "+answer+"<br/>");
+      inputObj.value ="";
+
+    } 
+
+    // date picker
+
+    $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+    function displayDate(){
+        document.getElementById("demo").innerHTML=Date();
+      }
+  </script>
   <% end %>
 
 

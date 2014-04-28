@@ -2,7 +2,6 @@ class RoundsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	# @rounds = Round.all
     @rounds = Round.find_all_by_status(false)
   end
 
@@ -10,23 +9,15 @@ class RoundsController < ApplicationController
   	@round = Round.new
   end
 
-  # def create
-  #   # debugger
-  # 	  @round = Round.new
-  #     @round.id = params[:round][:id]
-  #     @round.question = params[:round][:question]
-  #     @round.deadline = params[:round][:deadline]
-  #     @round.save
-	 #   redirect_to rounds_path
-  # end
-
   def create
       @round = Round.new
-      @answer = Answer.new
+      @answer = Answer.new 
+             debugger
       @round.id = params[:round][:id]
       @round.question = params[:round][:question]
       @round.deadline = params[:round][:deadline]
       if @round.save
+
         params[:answers].each do |each_answer|
           @answer = Answer.new
           @answer.txt_answers = each_answer
@@ -43,8 +34,6 @@ class RoundsController < ApplicationController
 
   def edit
     @round = Round.find_by_id(params[:id])
-    # add_breadcrumb "Home", users_path
-    # add_breadcrumb "Edit User"
   end
 
   def update
@@ -72,19 +61,7 @@ class RoundsController < ApplicationController
         flash.alert = "#{@round.question} cannot enable for suggestion!"
       end
     end
-   #   round = Round.find_by_id(params[:id])
-   #   round.status = params[:status]
-   #   round.status = true
-   #   if round.save!
-   #    redirect_to suggestion_path
-   #   else
-   #   redirect_to rounds_path
-   # end
   end
-  # private
-  # def round_params
-  #   params.require(:round).permit(:question, :suggestion, :deadline)
-  # end
 
   def show
     @round = Round.find(params[:id])
