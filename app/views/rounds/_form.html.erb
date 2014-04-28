@@ -40,9 +40,20 @@
     document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
 
     function addSuggestion(){
-      var sugg = document.getElementById("round_suggestion").value;
-      document.getElementById("suggestion_list").innerHTML = sugg;
-    }
+      var elementObj = document.getElementById("suggestion_list");
+      var inputObj = document.getElementById("round_suggestion");
+
+      var checkBox = document.createElement("INPUT");
+      var answer = inputObj.value;
+      checkBox.setAttribute("type", "checkbox");
+      checkBox.setAttribute("value", answer);
+      checkBox.setAttribute("name", "answers[]");
+      checkBox.setAttribute("class", "answers");
+      var checkList = elementObj.appendChild(checkBox);
+      $("p#suggestion_list").append(" "+answer+"<br/>");
+      inputObj.value ="";
+
+    } 
 
     // date picker
 
