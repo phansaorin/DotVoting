@@ -10,14 +10,37 @@ class RoundsController < ApplicationController
   	@round = Round.new
   end
 
+  # def create
+  #   # debugger
+  # 	  @round = Round.new
+  #     @round.id = params[:round][:id]
+  #     @round.question = params[:round][:question]
+  #     @round.deadline = params[:round][:deadline]
+  #     @round.save
+	 #   redirect_to rounds_path
+  # end
+
   def create
-  	  @round = Round.new
+      @round = Round.new
+      @answer = Answer.new
       @round.id = params[:round][:id]
       @round.question = params[:round][:question]
       @round.deadline = params[:round][:deadline]
-      @round.save
-	   redirect_to rounds_path
+      if @round.save
+        params[:answers].each do |each_answer|
+          @answer = Answer.new
+          @answer.txt_answers = each_answer
+          @answer.round_id = @round.id
+          @answer.save!
+        end
+        redirect_to rounds_path
+      else 
+        render :new
+        flash.alert = "Cannot add new round!"
+      end
+     
   end
+
   def edit
     @round = Round.find_by_id(params[:id])
     # add_breadcrumb "Home", users_path

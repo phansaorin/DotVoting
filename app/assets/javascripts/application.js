@@ -16,3 +16,13 @@
 //= require_tree .
 //= require bootstrap.min
 //= require bootstrap-datepicker
+
+$(function(){
+  $(".add_answer").click(function(event){
+  	var suggestion = $("input#suggestion").val();
+  	alert(suggestion);
+    // var htmlcode=$(this).parents('section').clone();
+    // $('#dispbusiness').html(htmlcode);
+    return true;
+  })
+})

@@ -1,4 +1,3 @@
-
 <%= form_for @round , :html => { :multipart => true } do |f| %>
 <div align='center'>
   <table class="tbl-user">
@@ -6,6 +5,24 @@
       <td><%= f.label :question %></td>
       <td>:</td>
       <td><%= f.text_area :question, :placeholder => 'Enter Question' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Suggestion" %></td>
+      <td>:</td>
+     <td><%= f.text_field "suggestion", :id => "suggestion", :value => "", class: "form-control" %>
+      <%= link_to "Add".html_safe, "#", id: "add_answer", class: "add_answer" %>
+      <div id="div_answer"></div>
+      <!-- <input type="checkbox" value="basket_ball" name="answers[]" id="answers_"> -->
+      <!-- check_box_tag 'eula', 'accepted', false, disabled: true -->
+      </br>
+        <%= check_box_tag "answers[]", 'basket_ball' %> Basketball</br>
+        <%= check_box_tag "answers[]", 'ball' %> ball</br></br>
+
+<!-- session[:continent] ||= {}
+session[:continent][:filter] = params[:filter] -->
+
+      </ul>
+     </td>
     </tr>
     <tr>
       <td><%= f.label :dealine %></td>
