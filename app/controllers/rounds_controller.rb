@@ -1,7 +1,15 @@
 class RoundsController < ApplicationController
   def index
+
+    if user_signed_in?
+      @rounds = Round.all
+    else
+      redirect_to user_session_path
+    end
+
   	# @rounds = Round.all
     @rounds = Round.find_all_by_status(0)
+
   end
 
   def new
