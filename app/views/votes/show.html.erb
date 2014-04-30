@@ -12,8 +12,34 @@
 
 		<h2>Voting</h2>
 
+		<!-- Question -->
+
 		<h4><%= "#{@question_id}. " %><%= @round.question %></h4>
 
+		<!-- End question -->
+
+		<!-- Answer or Suggestion -->
+
+		
+		
+
+		<p id="all-answer">
+			<% @answers = Answer.find_all_by_round_id(@question_id) %>
+			<% @answers.each do |answer| %>
+			<input type="checkbox" value="<% answer.txt_answers %>" name="answer[]" /> <%= answer.txt_answers %>
+			<% end %>
+
+		
+		</p>
+		<!-- End Answer or Suggestion -->
+
+		<!-- Voting -->
+
+
+
+		<!-- End Voting -->
+
+		<!-- Comment -->
 
 		<% if(@comments.count != 0) %>
 			<h5>Comment List: <%= @comments.count %></h5>
@@ -24,6 +50,8 @@
 
 		<!-- <p>Login User : <%= current_user.email %></p> -->
 		<%= render partial: 'comments/form' %>
+
+		<!-- End comment -->
 
 	</div>
 </div><!-- end #wrapper-end -->

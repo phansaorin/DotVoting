@@ -12,7 +12,6 @@ class RoundsController < ApplicationController
   def create
       @round = Round.new
       @answer = Answer.new 
-             debugger
       @round.id = params[:round][:id]
       @round.question = params[:round][:question]
       @round.deadline = params[:round][:deadline]
