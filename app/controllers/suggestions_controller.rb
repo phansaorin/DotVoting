@@ -1,8 +1,9 @@
 class SuggestionsController < ApplicationController
   before_action :authenticate_user!
   def index
-	# @suggestion = Round.where(:status => true)
-	@suggestions = Round.find_all_by_status(true)
+  	# @suggestion = Round.where(:status => true)
+  	@suggestions = Round.find_all_by_status(true)
+    # Answer.find(:first, :conditions => ["round_id = ? ", @suggestions.id], :order => 'top_answer DESC')
   end
   def show
     @suggestion = Round.new
