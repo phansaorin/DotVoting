@@ -3,13 +3,8 @@ class VotesController < ApplicationController
 
   def index
   	@votes = Vote.all
-  	@rounds = Round.all
+  	@rounds = Round.find_all_by_status(true)
   end  
-  # def question
-  	# @question_id = params[:id]
- 	# @vote = Vote.find_by_id(params[:id])
-	# @round = Round.new
- # end
 
  def show
  	@question_id = params[:id]

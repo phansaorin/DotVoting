@@ -3,6 +3,10 @@ DotVoting::Application.routes.draw do
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
   end
+
+  #get 'suggestions/save_answer', to: 'suggestions#save_answer'
+  # match "suggestions/save_answer" => "suggestions#save_answer", via: [:get, :post]
+
   # get 'round/status', to: 'round#status'
   devise_for :users
   resources :users
@@ -11,15 +15,16 @@ DotVoting::Application.routes.draw do
     resources :comments
   end
   resources :votes do
-  post :question, on: :member
+    post :question, on: :member
   end
   resources :suggestions do
-  post :status, on: :member
+    post :status, on: :member
+    post :save_voting, on: :collection
   end
   root to: "rounds#index"
 
   resources :answers do
-   post :store_answers, on: :collection
+    post :store_answers, on: :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

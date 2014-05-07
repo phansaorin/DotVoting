@@ -28,8 +28,9 @@
       </td>
     </tr>
   </table>
+</div>
+<% end %>
   <script>
-
     // add suggestion
 
     document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
@@ -38,16 +39,20 @@
       var elementObj = document.getElementById("suggestion_list");
       var inputObj = document.getElementById("round_suggestion");
 
-      var checkBox = document.createElement("INPUT");
-      var answer = inputObj.value;
-      checkBox.setAttribute("type", "checkbox");
-      checkBox.setAttribute("value", answer);
-      checkBox.setAttribute("name", "answers[]");
-      checkBox.setAttribute("class", "answers");
-      checkBox.setAttribute("checked", "checked");
-      elementObj.appendChild(checkBox);
-      $("p#suggestion_list").append(" "+answer+"<br/>");
-      inputObj.value ="";
+      if(inputObj.value == "") {
+        alert("Please enter the suggestion!"); 
+      }else{
+          var checkBox = document.createElement("INPUT");
+          var answer = inputObj.value;
+          checkBox.setAttribute("type", "checkbox");
+          checkBox.setAttribute("value", answer);
+          checkBox.setAttribute("name", "answers[]");
+          checkBox.setAttribute("class", "answers");
+          checkBox.setAttribute("checked", "checked");
+          elementObj.appendChild(checkBox);
+          $("p#suggestion_list").append(" "+answer+"<br/>");
+          inputObj.value ="";
+      }
 
     } 
 
@@ -58,6 +63,6 @@
         document.getElementById("demo").innerHTML=Date();
       }
   </script>
-  <% end %>
+  
 
 

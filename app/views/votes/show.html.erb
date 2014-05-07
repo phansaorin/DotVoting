@@ -16,26 +16,41 @@
 
 		<h4><%= "#{@question_id}. " %><%= @round.question %></h4>
 
+		
+
 		<!-- End question -->
 
 		<!-- Answer or Suggestion -->
 
-		<p id="all-answer">
+		<% @answers = Answer.find_all_by_round_id(@question_id) %>
+		<%= form_for :suggestions, url: {action: "save_voting", controller: "suggestions"} do |ta| %>
 
-			<% @answers = Answer.find_all_by_round_id(@question_id) %>
-			<% @answers.each do |answer| %>
-			<input type="checkbox" value="<% answer.txt_answers %>" name="answer[]" /> <%= answer.txt_answers %>
-			<% end %>
-		
-		</p>
-		
+			<input type="hidden" name="round_id" value="<%= @question_id %>" />
+
+			<p id="all-answer">
+				<% @answers.each do |answer| %>
+					 <input type="checkbox" value="<%= answer.id %>" name='suggestion_answers[]' /> <%= answer.txt_answers %> <span style="color: red;">&nbsp; &nbsp; Voted:<%= answer.top_answer %></span><br/>
+					 <span id="new-suggestion"></span>
+				<% end %>
+			</p>
+
 		<!-- End Answer or Suggestion -->
 
 		<!-- Voting -->
-
-
-
+			<%= ta.submit "Vote", class: "btn btn-info" %>
 		<!-- End Voting -->
+
+		<!-- Add More Suggestion -->
+
+			<a id="toggle-answer" style="cursor: pointer;" class="btn btn-info">Add more suggestion</a>
+			<div id="answer-form">
+				Suggestion : <%= ta.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "round_suggestion", :value => "", class: "form-control" %> <a id="add-more-sug" style="cursor: pointer;">Add Suggestion</a>
+			</div>
+
+		<!-- End Add More Suggestion -->
+
+		<% end %>
+		
 
 		<!-- Comment -->
 
@@ -53,4 +68,43 @@
 
 	</div>
 </div><!-- end #wrapper-end -->
+
+<!-- Add more suggestion -->
+
+<script>
+
+	//toggle show form for add suggestion
+
+	$(document).ready(function(){
+	$("#answer-form").hide();
+	  $("#toggle-answer").click(function(){
+	    $("#answer-form").toggle();
+	  });
+	});
+
+	// add more suggestion action
+
+	document.getElementById('add-more-sug').onclick = function(){addMoreSuggestion()};
+
+	function addMoreSuggestion(){
+		var newSuggestion = document.getElementById('new-suggestion');
+		var roundSuggestion = document.getElementById('round_suggestion');
+
+		if(roundSuggestion.value == "") {
+        	alert("Please enter the suggestion!"); 
+	    }else{
+	          var newCheckBox = document.createElement("INPUT");
+	          var newAnswer = roundSuggestion.value;
+	          newCheckBox.setAttribute("type", "checkbox");
+	          newCheckBox.setAttribute("value", newAnswer);
+	          newCheckBox.setAttribute("name", "answers[]");
+	          newCheckBox.setAttribute("class", "answers");
+	          newCheckBox.setAttribute("checked", "checked");
+	          elementObj.appendChild(newCheckBox);
+	          $("new-suggestion").append(" "+newAnswer+"<br/>");
+	          roundSuggestion.value ="";
+	    }
+	}
+
+</script>
 

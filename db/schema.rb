@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429092831) do
+ActiveRecord::Schema.define(version: 20140507095346) do
 
   create_table "answers", force: true do |t|
     t.string   "txt_answers"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20140429092831) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "status",     default: false
+  end
+
+  create_table "user_answers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.integer  "round_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

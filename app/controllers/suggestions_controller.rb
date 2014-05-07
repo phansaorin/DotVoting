@@ -16,4 +16,22 @@ class SuggestionsController < ApplicationController
      round.save!
     end
   end
+
+  def save_voting
+
+    params[:suggestion_answers].each do |vote_answer|
+      @user_answer = UserAnswer.new
+      @user_answer.answer_id = vote_answer
+      @user_answer.user_id = current_user.id
+      @user_answer.round_id = params[:round_id]
+      @user_answer.save!
+    end
+    redirect_to vote_path(params[:round_id])
+    
+
+    @get_question = params[:round_id]
+    @get_answer = params["suggestions"]["answers"]
+
+
+  end
 end
