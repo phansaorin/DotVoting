@@ -1,14 +1,6 @@
 <div id="wrapper-font">
 	
 	<div class="blog-summary">
-		<!-- <div class="row">
-			<div class="span12" style="width: 98.4%;">
-			    <ul class="nav nav-tabs">
-				    <li><a href="#">All Questions</a></li>
-				    <li class="active"><a href="#">Voting</a></li>
-	            </ul>
-	        </div>
-		</div> -->
 
 		<h2>Voting</h2>
 
@@ -16,20 +8,23 @@
 
 		<h4><%= "#{@question_id}. " %><%= @round.question %></h4>
 
-		
-
 		<!-- End question -->
 
 		<!-- Answer or Suggestion -->
 
-		<% @answers = Answer.find_all_by_round_id(@question_id) %>
 		<%= form_for :suggestions, url: {action: "save_voting", controller: "suggestions"} do |ta| %>
 
 			<input type="hidden" name="round_id" value="<%= @question_id %>" />
 
 			<p id="all-answer">
-				<% @answers.each do |answer| %>
-					 <input type="checkbox" value="<%= answer.id %>" name='suggestion_answers[]' /> <%= answer.txt_answers %> <span style="color: red;">&nbsp; &nbsp; Voted:<%= answer.top_answer %></span><br/>
+				<% @arr_answers.each do |answer| %>
+					<% @voted = UserAnswer.find_by_user_id_and_answer_id(current_user.id, answer[:answer].id) %>
+					
+					<% if @voted != nil %>
+						<input type="checkbox" value="<%= answer[:answer].id %>" name='suggestion_answers[]' checked="checked" /> <%= answer[:answer].txt_answers %> <span style="color: red;">&nbsp; &nbsp; Voted:<%= answer[:amount] %></span><br/>
+					<% else %>
+						<input type="checkbox" value="<%= answer[:answer].id %>" name='suggestion_answers[]' /> <%= answer[:answer].txt_answers %> <span style="color: red;">&nbsp; &nbsp; Voted:<%= answer[:amount] %></span><br/>
+					<% end %>
 					 <span id="new-suggestion"></span>
 				<% end %>
 			</p>

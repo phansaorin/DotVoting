@@ -6,6 +6,7 @@ class SuggestionsController < ApplicationController
     # Answer.find(:first, :conditions => ["round_id = ? ", @suggestions.id], :order => 'top_answer DESC')
   end
   def show
+
     @suggestion = Round.new
   end
   def status
@@ -26,6 +27,7 @@ class SuggestionsController < ApplicationController
       @user_answer.round_id = params[:round_id]
       @user_answer.save!
     end
+
     redirect_to vote_path(params[:round_id])
     
 
