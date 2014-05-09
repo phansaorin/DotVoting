@@ -38,18 +38,24 @@
 
 		<!-- Voting -->
 			<%= ta.submit "Vote", class: "btn btn-info" %>
+			<a id="toggle-answer" style="cursor: pointer;" class="btn btn-info">Add more suggestion</a>
 		<!-- End Voting -->
+
+		<% end %>
 
 		<!-- Add More Suggestion -->
 
-			<a id="toggle-answer" style="cursor: pointer;" class="btn btn-info">Add more suggestion</a>
-			<div id="answer-form">
-				Suggestion : <%= ta.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "round_suggestion", :value => "", class: "form-control" %> <a id="add-more-sug" style="cursor: pointer;">Add Suggestion</a>
-			</div>
+			<%= form_for :rounds, url: {action: 'add_more_answer', controller: 'rounds'} do |a| %>
+
+				
+				<div id="answer-form">
+					Suggestion : <%= a.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "kk", :value => " ", class: "form-control" %><%= a.submit "Add More", class: "btn btn-info" %>
+					 <!-- <a id="add-more-sug" style="cursor: pointer;">Add Suggestion</a> -->
+				</div>
+
+			<% end %>
 
 		<!-- End Add More Suggestion -->
-
-		<% end %>
 		
 
 		<!-- Comment -->

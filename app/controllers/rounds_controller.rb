@@ -31,6 +31,18 @@ class RoundsController < ApplicationController
      
   end
 
+  def add_more_answer
+
+    #debugger
+
+      @more_answer = Answer.new
+      @new_answer.round_id = params[:round][:id]
+      @new_answer.question = params[:round][:question]
+      @new_answer.save
+      redirect_to rounds_path
+
+  end
+
   def edit
     @round = Round.find_by_id(params[:id])
   end

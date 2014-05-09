@@ -13,6 +13,7 @@ DotVoting::Application.routes.draw do
   resources :rounds do
     post :status, on: :member
     resources :comments
+    post :add_more_answer, on: :member
   end
   resources :votes do
     post :question, on: :member

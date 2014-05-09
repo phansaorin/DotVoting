@@ -16,11 +16,11 @@
 		<h4>Question</h4>
 
 		<table class="table">
-			<% @rounds.each do |round| %>
+			<% @arr_suggestions.each do |round| %>
 	    		<tr>
-	    			<td><%= round.id %></td>
-	    			<td><%= link_to (round.question), vote_path(round) %></td>
-	    			<td>Answers : 4 (<%= round.deadline %>)</td>
+	    			<td><%= round[:suggestion].id %></td>
+	    			<td><%= link_to (round[:suggestion].question), vote_path(round[:suggestion]) %></td>
+	    			<td>Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> (<%=  round[:suggestion].deadline %>)</td>
 	    			<td><a href="#">Add More Answer</a></td>
 	    		</tr>
     		<% end %>

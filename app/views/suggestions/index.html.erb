@@ -24,24 +24,19 @@
 						<th>Action</th>
 						<!-- <th>Status</th> -->
 					</tr>
-				<% @suggestions.each do |round| %>
+				<% @arr_suggestions.each do |round| %>
 			    	<tr>
-						<td><%= round.id %></td>
-						<td><%= round.question %></td>
-						<td><%= round.deadline %></td>
-						<td>
-							<% @answers = Answer.find_all_by_round_id(round.id) %>
-							<% @answers.each do |answer| %>
-								<p><%= answer.txt_answers %></p>
-							<% end %>
-						</td>
+						<td><%= round[:suggestion].id %></td>
+						<td><%= round[:suggestion].question %></td>
+						<td><%= round[:suggestion].deadline %></td>
+						<td style="color: purple; font-weight: bold;"><%= round[:top_answer] %></td>
 						<td>
 							<span>
-								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
+								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round[:suggestion]) %>
 							</span> 
 							&nbsp;
 							<span>
-								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
+								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round[:suggestion]), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
 							</span>
 						</td>
 						<!-- <td>
