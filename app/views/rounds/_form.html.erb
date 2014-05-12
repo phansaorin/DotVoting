@@ -42,19 +42,24 @@
       if(inputObj.value == "") {
         alert("Please enter the suggestion!"); 
       }else{
-          var checkBox = document.createElement("INPUT");
           var answer = inputObj.value;
+          var checkBox = document.createElement("INPUT");
           checkBox.setAttribute("type", "checkbox");
           checkBox.setAttribute("value", answer);
           checkBox.setAttribute("name", "answers[]");
-          checkBox.setAttribute("class", "answers");
+          checkBox.setAttribute("class", "answers_disable");
           checkBox.setAttribute("checked", "checked");
           elementObj.appendChild(checkBox);
-          $("p#suggestion_list").append(" "+answer+"<br/>");
+          $("p#suggestion_list").append("<p><span class='delete_suggestion' id='delete_suggestion'>X</span> "+answer+"</p>");
           inputObj.value ="";
       }
 
     } 
+
+    $("body").on("click", "span#delete_suggestion", function() {
+      // alert(this.value);
+      $(this).parent("p").remove();
+    });
 
     // date picker
 
