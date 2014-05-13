@@ -32,20 +32,31 @@ class SuggestionsController < ApplicationController
   end
 
   def save_voting
+
     if params[:suggestion_answers]
       # Delete all records of user voted at previous time
       Round.delete_user_answer current_user.id, params[:round_id]
       params[:suggestion_answers].each do |vote_answer|
         @user_answer = UserAnswer.new
-
-        @user_answer.answer_id = vote_answer
-        @user_answer.user_id = current_user.id
-        @user_answer.round_id = params[:round_id]
-        @user_answer.save!
+        @user_answer.save vote_answer, current_user.id, params[:round_id]
       end
     else
       # Delete all records of user voted at previous time
       Round.delete_user_answer current_user.id, params[:round_id]
+    end
+
+
+    if params[:answers]
+      params[:answers].each do |an|
+        @answer = Answer.new
+        @answer.txt_answers = an
+        @answer.round_id = params[:round_id]
+        if @answer.save
+           @user_answer = UserAnswer.new
+
+           @user_answer.save Answer.last.id, current_user.id, params[:round_id]
+        end
+      end
     end
 
     redirect_to vote_path(params[:round_id])
