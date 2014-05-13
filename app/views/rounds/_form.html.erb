@@ -12,7 +12,7 @@
       <td><%= f.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "round_suggestion", :value => "", class: "form-control" %>
         <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
         </br>
-        <p id="suggestion_list"></p>
+        <div id="suggestion_list"></div>
       </td>
     </tr>
     <tr>
@@ -32,10 +32,11 @@
 <% end %>
   <script>
     // add suggestion
-
+    var suggestionId = 0;
     document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
 
     function addSuggestion(){
+      suggestionId = suggestionId + 1;
       var elementObj = document.getElementById("suggestion_list");
       var inputObj = document.getElementById("round_suggestion");
 
@@ -49,16 +50,17 @@
           checkBox.setAttribute("name", "answers[]");
           checkBox.setAttribute("class", "answers_disable");
           checkBox.setAttribute("checked", "checked");
-          elementObj.appendChild(checkBox);
-          $("p#suggestion_list").append("<p><span class='delete_suggestion' id='delete_suggestion'>X</span> "+answer+"</p>");
+          // elementObj.appendChild(checkBox);
+          $("#suggestion_list").append("<div class='delete_suggestion' id='delete_suggestion_"+suggestionId+"'>X <span class='suggestion'>"+answer+"</span></div> ");
+
+          $("#delete_suggestion_"+suggestionId).append(checkBox);
           inputObj.value ="";
       }
 
     } 
 
-    $("body").on("click", "span#delete_suggestion", function() {
-      // alert(this.value);
-      $(this).parent("p").remove();
+    $("body").on("click", ".delete_suggestion", function() {
+      $(this).remove();
     });
 
     // date picker

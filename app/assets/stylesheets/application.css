@@ -235,10 +235,15 @@ h2 {
 .delete_suggestion {
   color: red;
   cursor: pointer;
+  display: block;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 .answers_disable {
   display: none;
+}
+span.suggestion {
+  color: #000000;
 }
 
 
