@@ -241,4 +241,13 @@ h2 {
   margin-top: 20px;
 }
 
+.delete_suggestion {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
+.answers_disable {
+  display: none;
+}
+
 
