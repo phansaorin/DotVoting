@@ -16,12 +16,14 @@ class RoundsController < ApplicationController
       @round.question = params[:round][:question]
       @round.deadline = params[:round][:deadline]
       if @round.save
-        params[:answers].each do |each_answer|
-          @answer = Answer.new
-          @answer.txt_answers = each_answer
-          @answer.round_id = @round.id
-          @answer.top_answer = 0
-          @answer.save!
+        if params[:answers]
+          params[:answers].each do |each_answer|
+            @answer = Answer.new
+            @answer.txt_answers = each_answer
+            @answer.round_id = @round.id
+            @answer.top_answer = 0
+            @answer.save!
+          end
         end
         redirect_to rounds_path
       else 

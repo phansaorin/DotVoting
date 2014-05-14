@@ -20,7 +20,24 @@
 	    		<tr>
 	    			<td><%= round[:suggestion].id %></td>
 	    			<td><%= link_to (round[:suggestion].question), vote_path(round[:suggestion]) %></td>
-	    			<td>Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> (<%=  round[:suggestion].deadline %>)</td>
+	    			
+
+	    				<% leave_day = (round[:suggestion].deadline - Date.today).to_i %>
+	    				<% if leave_day > 0 %>
+	    					<td>Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> (<%=  round[:suggestion].deadline %>) <span class="leave_deadline">(Leave: <%= leave_day %> day(s) )</span></td>
+	    				<% elsif leave_day < 0 %>
+	    					<td>
+	    						Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> 
+	    						(<%=  round[:suggestion].deadline %>) 
+	    						<span class="view_completed_round">
+	    							<%= link_to "(View Completed Round)", "#" %>
+	    						</span>
+	    					</td>
+	    				<% else %>
+	    					<td>Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> (<%=  round[:suggestion].deadline %>) <span class="argent_deadline">(Today is deadline)</span></td>
+	    				<% end %>
+
+
 	    			<td><a href="#">Add More Answer</a></td>
 	    		</tr>
     		<% end %>
