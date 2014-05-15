@@ -7,18 +7,9 @@
       <td><%= f.text_area :question, :placeholder => 'Enter Question' %></td>
     </tr>
     <tr>
-      <td><%= f.label "Suggestion" %></td>
-      <td>:</td>
-      <td><%= f.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "round_suggestion", :value => "", class: "form-control" %>
-        <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
-        </br>
-        <div id="suggestion_list"></div>
-      </td>
-    </tr>
-    <tr>
       <td><%= f.label :dealine %></td>
       <td>:</td>
-      <td><%= f.text_field :deadline, :id => "datepicker", :value => Date.today, class: "form-control" %></td>
+      <td><%= f.text_field :deadline, :id => "datepicker", :value => @date, class: "form-control" %></td>
     </tr>
     <tr>
     <tr>
@@ -32,32 +23,32 @@
 <% end %>
   <script>
     // add suggestion
-    var suggestionId = 0;
-    document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
+    //var suggestionId = 0;
+    //document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
 
-    function addSuggestion(){
-      suggestionId = suggestionId + 1;
-      var elementObj = document.getElementById("suggestion_list");
-      var inputObj = document.getElementById("round_suggestion");
+    // function addSuggestion(){
+    //   suggestionId = suggestionId + 1;
+    //   var elementObj = document.getElementById("suggestion_list");
+    //   var inputObj = document.getElementById("round_suggestion");
 
-      if(inputObj.value == "") {
-        alert("Please enter the suggestion!"); 
-      }else{
-          var answer = inputObj.value;
-          var checkBox = document.createElement("INPUT");
-          checkBox.setAttribute("type", "checkbox");
-          checkBox.setAttribute("value", answer);
-          checkBox.setAttribute("name", "answers[]");
-          checkBox.setAttribute("class", "answers_disable");
-          checkBox.setAttribute("checked", "checked");
-          // elementObj.appendChild(checkBox);
-          $("#suggestion_list").append("<div class='delete_suggestion' id='delete_suggestion_"+suggestionId+"'>X <span class='suggestion'>"+answer+"</span></div> ");
+    //   if(inputObj.value == "") {
+    //     alert("Please enter the suggestion!"); 
+    //   }else{
+    //       var answer = inputObj.value;
+    //       var checkBox = document.createElement("INPUT");
+    //       checkBox.setAttribute("type", "checkbox");
+    //       checkBox.setAttribute("value", answer);
+    //       checkBox.setAttribute("name", "answers[]");
+    //       checkBox.setAttribute("class", "answers_disable");
+    //       checkBox.setAttribute("checked", "checked");
+    //       // elementObj.appendChild(checkBox);
+    //       $("#suggestion_list").append("<div class='delete_suggestion' id='delete_suggestion_"+suggestionId+"'>X <span class='suggestion'>"+answer+"</span></div> ");
 
-          $("#delete_suggestion_"+suggestionId).append(checkBox);
-          inputObj.value ="";
-      }
+    //       $("#delete_suggestion_"+suggestionId).append(checkBox);
+    //       inputObj.value ="";
+    //   }
 
-    } 
+    // } 
 
     $("body").on("click", ".delete_suggestion", function() {
       $(this).remove();
@@ -67,7 +58,7 @@
 
     $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
     function displayDate(){
-        document.getElementById("demo").innerHTML=Date();
+        document.getElementById("demo").innerHTML = <%= @date %>;
       }
   </script>
   

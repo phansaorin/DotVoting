@@ -9,12 +9,12 @@
                 <ul class="nav nav-tabs nav-stacked">
 			    	<li><a href="#">Management</a></li>
 					<li><%= link_to 'User',users_path %></li>
-					<li class="active"><%= link_to "Round",rounds_path%></li>
-					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
+					<li class="active"><%= link_to "Round Phase",rounds_path%></li>
+					<li class="#"><%= link_to 'Suggestion Phase',suggestions_path %></li>
 			    </ul>
           	</div>
           	<div class="span10">
-          		<h3>Round Management</h3>
+          		<h3>Round Phase</h3>
           		<p>
           			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
           		</p>
@@ -24,11 +24,14 @@
 						<th>Round</th>
 						<th>Deadline</th>
 						<th>Action</th>
-						<th>Status</th>
+						<th></th>
 					</tr>
+
+				<%	@count_round_id = 0 %>
+
 				<% @rounds.each do |round| %>
 			    	<tr>
-						<td><%= round.id %></td>
+						<td><%= @count_round_id = @count_round_id + 1 %></td>
 						<td><%= round.question %></td>
 						<td><%= round.deadline %></td>
 						<td>
@@ -41,7 +44,7 @@
 							</span>
 						</td>
 						<td>
-	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => true), method: :post %></span>
+	         <span><%= link_to '<button class="btn btn-success">Start Suggestion Phase</button>'.html_safe, status_round_path(round, :status => true), method: :post %></span>
 						</td>
 					</tr>
 				<% end %>

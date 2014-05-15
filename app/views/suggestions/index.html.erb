@@ -6,8 +6,8 @@
                 <ul class="nav nav-tabs nav-stacked">
 			    	<li><a href="#">Management</a></li>
 					<li><%= link_to 'User',users_path %></li>
-					<li class="active"><%= link_to "Round",rounds_path%></li>
-					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
+					<li class="active"><%= link_to "Round Phase",rounds_path%></li>
+					<li class="#"><%= link_to 'Suggestion Phase',suggestions_path %></li>
 			    </ul>
           	</div>
           	<div class="span10">
@@ -24,20 +24,21 @@
 						<th>Action</th>
 						<!-- <th>Status</th> -->
 					</tr>
+
+				<% @suggestion_id = 0; %>
+
 				<% @arr_suggestions.each do |round| %>
 			    	<tr>
-						<td><%= round[:suggestion].id %></td>
+						<td><%= @suggestion_id = @suggestion_id + 1 %></td>
 						<td><%= round[:suggestion].question %></td>
 						<td><%= round[:suggestion].deadline %></td>
 						<td style="color: purple; font-weight: bold;"><%= round[:top_answer] %></td>
 						<td>
 							<span>
-								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round[:suggestion]) %>
+								<%= link_to '<button class="btn btn-success">Add more suggestion</button>'.html_safe, edit_suggestion_path(round[:suggestion]) %>
 							</span> 
 							&nbsp;
-							<span>
-								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round[:suggestion]), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
-							</span>
+							
 						</td>
 						<!-- <td>
 	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
