@@ -17,6 +17,7 @@ DotVoting::Application.routes.draw do
   end
   resources :votes do
     post :question, on: :member
+    get :view_completed, on: :member
   end
   resources :suggestions do
     post :status, on: :member

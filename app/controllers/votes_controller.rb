@@ -35,4 +35,13 @@ class VotesController < ApplicationController
     # @voted_amount = UserAnswer.find_all_by_answer_id_and_round_id(answer.id, @question_id).count
  end
 
+ def view_completed
+    @round = Round.find_by_id(params[:id])
+    # @answers = Answer.find_all_by_round_id(params[:id])
+    top_answer = UserAnswer.where(:round_id => params[:id]).group("answer_id").order("count(answer_id) desc").first
+    if top_answer
+      @txt_answer = top_answer.answer.txt_answers
+    end
+ end
+
 end

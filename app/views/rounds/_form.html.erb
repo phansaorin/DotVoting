@@ -13,6 +13,20 @@
         <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
         </br>
         <div id="suggestion_list"></div>
+        
+        <% if @answers %>
+          <div>
+          <% suggestionId = 0 %>
+            <% @answers.each do |answer| %>
+            <% suggestionId = suggestionId + 1 %>
+              <div class='delete_suggestion' id="delete_suggestion_<%= suggestionId %>">X 
+                <span class='suggestion'><%= answer.txt_answers %></span>
+                <input type="checkbox" value="<%= answer.txt_answers %>" name="answers[]" class="answers_disable" checked="checked">
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        
       </td>
     </tr>
     <tr>

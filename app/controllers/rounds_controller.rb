@@ -47,6 +47,7 @@ class RoundsController < ApplicationController
 
   def edit
     @round = Round.find_by_id(params[:id])
+    @answers = Answer.find_all_by_round_id(params[:id])
   end
 
   def update

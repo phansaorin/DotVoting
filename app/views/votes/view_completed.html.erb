@@ -1,0 +1,21 @@
+<% if @round %>
+	<div align='center'>
+	  <table class="tbl-user">
+	  	<tr>
+	  		<td>Question</td>
+	  		<td>:</td>
+	  		<td><%= @round.question %></td>
+	  	</tr>
+	  	<tr>
+	  		<td>Top Answer</td>
+	  		<td>:</td>
+	  		<td><%= @txt_answer %></td>
+	  	</tr>
+	    <tr>
+	      <td colspan="3">
+	        <%= link_to '<input value="Back" type="button" class="btn btn-info" />'.html_safe, votes_path %>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+<% end %>

@@ -7,10 +7,11 @@
           	<div class="span2">
           		<h3>Action</h3>
                 <ul class="nav nav-tabs nav-stacked">
-			    	<li><a href="#">Management</a></li>
-					<li><%= link_to 'User',users_path %></li>
+			    	<!-- <li><a href="#">Management</a></li> -->
+					<!-- <li><%= link_to 'User',users_path %></li> -->
 					<li class="active"><%= link_to "Round",rounds_path%></li>
 					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
+					<li class="#"><%= link_to 'Vote',votes_path %></li>
 			    </ul>
           	</div>
           	<div class="span10">
@@ -30,7 +31,18 @@
 			    	<tr>
 						<td><%= round.id %></td>
 						<td><%= round.question %></td>
-						<td><%= round.deadline %></td>
+						<!-- <td><%= round.deadline %></td> -->
+						<% leave_day = (round.deadline - Date.today).to_i %>
+	    				<% if leave_day > 0 %>
+	    					<td><span class="leave_deadline">(Leave: <%= leave_day %> day(s) )</span></td>
+	    				<% elsif leave_day < 0 %>
+	    					<td>
+	    						<span class="view_completed_round">(Closed)</span>
+	    					</td>
+	    				<% else %>
+	    					<td><span class="argent_deadline">(Today is deadline)</span></td>
+	    				<% end %>
+
 						<td>
 							<span>
 								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
