@@ -254,5 +254,15 @@ h2 {
 span.suggestion {
   color: #000000;
 }
+span.view_completed_round a {
+  color: #008000;
+}
+span.leave_deadline {
+  color: #4EA007;
+  /*#F8B32A*/
+}
+span.argent_deadline {
+  color: #FF9900;
+}
 
 
