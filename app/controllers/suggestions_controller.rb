@@ -18,16 +18,25 @@ class SuggestionsController < ApplicationController
   end
 
   def show
-
     @suggestion = Round.new
   end
 
   def edit
     @suggestion = Round.find_by_id(params[:id])
+  
+    @comments = Comment.all
+    @comment = Comment.new
     @date = Date.today + 3.days 
+    
   end
 
   def update
+    # @new_comment = Comment.new
+    # @new_comment.txt_comment = params[:comment][:txt_comment]
+    # @new_comment.round_id = params[:round_id]
+    # @new_comment.user_id = current_user.id
+    # @new_comment.save!
+    # @date = Date.today + 3.days 
   end
 
   def add
