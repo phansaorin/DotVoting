@@ -8,7 +8,7 @@ DotVoting::Application.routes.draw do
   # match "suggestions/save_answer" => "suggestions#save_answer", via: [:get, :post]
 
   # get 'round/status', to: 'round#status'
-  devise_for :users
+  devise_for :users, :controllers => {registrations: "users/registrations"}
   resources :users
   resources :rounds do
     post :status, on: :member

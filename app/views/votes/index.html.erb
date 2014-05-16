@@ -26,7 +26,7 @@
 					<% roundId = roundId + 1 %>
 		    		<tr>
 		    			<td><%= roundId %></td>
-		    			<td><%= link_to (round[:suggestion].question), vote_path(round[:suggestion]) %></td>
+		    			<td><%= round[:suggestion].question %></td>
 
 	    				
 	    				<% if leave_day > 0 %>
