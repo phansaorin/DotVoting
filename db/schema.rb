@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507095346) do
+ActiveRecord::Schema.define(version: 20140516095244) do
 
   create_table "Users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140507095346) do
     t.date     "deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "status",     default: false
+    t.string   "status",     default: "round"
   end
 
   create_table "user_answers", force: true do |t|

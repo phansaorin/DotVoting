@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   def index
     @arr_suggestions = []
   	@votes = Vote.all
-  	@suggestions = Round.find_all_by_status(true)
+  	@suggestions = Round.where(:status => "vote").order("deadline ASC")
     @suggestions.each do |suggestion|
         top_answer = UserAnswer.where(:round_id => suggestion.id).group("answer_id").order("count(answer_id) desc").first
         if top_answer

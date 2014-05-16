@@ -3,42 +3,48 @@
         <div class="row-fluid">
           	<div class="span2">
           		<h3>Action</h3>
-                <ul class="nav nav-tabs nav-stacked">
-			    	<!-- <li><a href="#">Management</a></li>
-					<li><%= link_to 'User',users_path %></li>-->					
+                <ul class="nav nav-tabs nav-stacked">				
 					<li class="active"><%= link_to "Round",rounds_path%></li>
 					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
 					<li class="#"><%= link_to 'Vote',votes_path %></li>
 			    </ul>
           	</div>
           	<div class="span10">
-          		<h3>Round Management</h3>
-          		<p>
-          			<%= link_to '<button type="button" class="btn btn-info">Add New</button>'.html_safe, new_round_path %>
-          		</p>
+          		<h3>Suggestion Phase</h3>
       		    <table class="table table-bordered">
       		    	<tr class="success">
 						<th>No</th>
 						<th>Round</th>
 						<th>Deadline</th>
-						<th>Top Answer</th>
 						<th>Action</th>
 						<!-- <th>Status</th> -->
 					</tr>
+
+				<% @suggestion_id = 0; %>
+
 				<% @arr_suggestions.each do |round| %>
+				<% leave_day = (round[:suggestion].deadline - Date.today).to_i %>
 			    	<tr>
-						<td><%= round[:suggestion].id %></td>
+						<td><%= @suggestion_id = @suggestion_id + 1 %></td>
 						<td><%= round[:suggestion].question %></td>
-						<td><%= round[:suggestion].deadline %></td>
-						<td style="color: purple; font-weight: bold;"><%= round[:top_answer] %></td>
+						<% if leave_day > 0 %>
+	    					<td><span class="leave_deadline">(Leave: <%= leave_day %> day(s) )</span></td>
+	    				<% elsif leave_day <= 0 %>
+	    					<td>
+	    						<span class="view_completed_round">(Closed)</span>
+	    					</td>
+	    				<% end %>
 						<td>
-							<span>
-								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round[:suggestion]) %>
-							</span> 
-							&nbsp;
-							<span>
-								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round[:suggestion]), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
-							</span>
+							<% if leave_day > 0 %>
+								<span>
+								<%= link_to '<button class="btn btn-success">Add more suggestion</button>'.html_safe, edit_suggestion_path(round[:suggestion]) %>
+								</span>
+							<% elsif leave_day <= 0 %>
+								<span>
+								<%= link_to '<button class="btn btn-danger">Start Voting</button>'.html_safe, status_round_path(round[:suggestion], :status => "vote"), method: :post %>
+								</span>
+							<% end %>
+							
 						</td>
 						<!-- <td>
 	         <span><%= link_to '<button class="btn btn-success">Enable</button>'.html_safe, status_round_path(round, :status => 0), method: :post %></span>
