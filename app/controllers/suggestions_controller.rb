@@ -3,10 +3,10 @@ class SuggestionsController < ApplicationController
   def index
   	# @suggestion = Round.where(:status => true)
     @arr_suggestions = []
-  	@suggestions = Round.find_all_by_status(true)
+  	@suggestions = Round.where(:status => "suggestion").order("deadline ASC")
   
     @suggestions.each do |suggestion|
-        top_answer = UserAnswer.where(:round_id => suggestion.id).group("answer_id").order("count(answer_id) desc").first
+        top_answer = UserAnswer.where(:round_id => suggestion.id).group("answer_id").order("count(answer_id) DESC").first
         if top_answer
           show_answer = top_answer.answer.txt_answers
         else
@@ -27,7 +27,6 @@ class SuggestionsController < ApplicationController
     @comments = Comment.all
     @comment = Comment.new
     @date = Date.today + 3.days 
-    
   end
 
   def update
@@ -43,6 +42,8 @@ class SuggestionsController < ApplicationController
     @round = Round.find_by_id(params[:id])
     @round.question = params[:round][:question]
     @round.deadline = params[:round][:deadline]
+
+    Answer.where(:round_id => params[:id]).destroy_all
 
     if params[:answers]
       params[:answers].each do |each_answer|

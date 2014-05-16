@@ -4,7 +4,12 @@
     <tr>
       <td><%= f.label :question %></td>
       <td>:</td>
-      <td><%= f.text_area :question, :placeholder => 'Enter Question' %></td>
+      <td><%= f.text_area :question, :placeholder => 'Enter Question', :disabled => "disabled" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :dealine %></td>
+      <td>:</td>
+      <td><%= f.text_field :deadline, :id => "datepicker", :value => @date, class: "form-control", :disabled => "disabled" %></td>
     </tr>
     <tr>
       <td><%= f.label "Suggestion" %></td>
@@ -13,12 +18,21 @@
         <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
         </br>
         <div id="suggestion_list"></div>
+        
+        <% if @answers %>
+          <div>
+          <% suggestionId = 0 %>
+            <% @answers.each do |answer| %>
+            <% suggestionId = suggestionId + 1 %>
+              <div class='delete_suggestion' id="delete_suggestion_<%= suggestionId %>">X 
+                <span class='suggestion'><%= answer.txt_answers %></span>
+                <input type="checkbox" value="<%= answer.txt_answers %>" name="answers[]" class="answers_disable" checked="checked">
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        
       </td>
-    </tr>
-    <tr>
-      <td><%= f.label :dealine %></td>
-      <td>:</td>
-      <td><%= f.text_field :deadline, :id => "datepicker", :value => @date, class: "form-control" %></td>
     </tr>
     <tr>
     <tr>

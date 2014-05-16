@@ -1,48 +1,61 @@
-<div id="wrapper-font">
-<!-- 	<div id='home-head'>
-		<h1>Questions</h1>
-	</div> -->
-	
-	<div class="blog-summary">
-		<!-- <div class="row">
-			<div class="span12" style="width: 98.4%;">
-			    <ul class="nav nav-tabs">
-				    <li class="active"><a href="#">All Questions</a></li>
-				    <li><a href="#">Voting</a></li>
-	            </ul>
-	        </div>
-		</div> -->
+<div id="wrapper">
+	<div class="container-fluid">
+        <div class="row-fluid">
+          	<div class="span2">
+          		<h3>Action</h3>
+                <ul class="nav nav-tabs nav-stacked">
+			    	<!-- <li><a href="#">Management</a></li> -->
+					<!-- <li><%= link_to 'User',users_path %></li> -->
+					<li class="active"><%= link_to "Round",rounds_path%></li>
+					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
+					<li class="#"><%= link_to 'Vote',votes_path %></li>
+			    </ul>
+          	</div>
+          	<div class="span10">
+          		<h3>Vote Phase</h3>
+      		    <table class="table table-bordered">
+      		    	<tr class="success">
+						<th>No</th>
+						<th>Round Question</th>
+						<th>Deadline</th>
+						<th>Action</th>
+					</tr>
+					<% roundId = 0 %>
+					<% @arr_suggestions.each do |round| %>
+					<% leave_day = (round[:suggestion].deadline - Date.today).to_i %>
+					<% roundId = roundId + 1 %>
+		    		<tr>
+		    			<td><%= roundId %></td>
+		    			<td><%= round[:suggestion].question %></td>
 
-		<h4>Question</h4>
-
-		<table class="table">
-			<% @arr_suggestions.each do |round| %>
-	    		<tr>
-	    			<td><%= round[:suggestion].id %></td>
-	    			<td><%= link_to (round[:suggestion].question), vote_path(round[:suggestion]) %></td>
-	    			
-
-	    				<% leave_day = (round[:suggestion].deadline - Date.today).to_i %>
+	    				
 	    				<% if leave_day > 0 %>
-	    					<td>Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> (<%=  round[:suggestion].deadline %>) <span class="leave_deadline">(Leave: <%= leave_day %> day(s) )</span></td>
-	    				<% elsif leave_day < 0 %>
 	    					<td>
-	    						Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> 
-	    						(<%=  round[:suggestion].deadline %>) 
-	    						<span class="view_completed_round">
-	    							<%= link_to "(View Completed Round)", "#" %>
-	    						</span>
+	    						<span class="leave_deadline">(Leave: <%= leave_day %> day(s) )</span>
+	    					</td>
+	    				<% elsif leave_day <= 0 %>
+	    					<td>
+	    						<!-- <span class="view_completed_round">
+	    							<%= link_to "(View Completed Round)", view_completed_vote_path(round[:suggestion]) %>
+	    						</span> -->
+	    						<span class="view_completed_round">(Closed)</span>
 	    					</td>
 	    				<% else %>
-	    					<td>Answers : <strong style="color: purple;"><%= round[:top_answer] %></strong> (<%=  round[:suggestion].deadline %>) <span class="argent_deadline">(Today is deadline)</span></td>
 	    				<% end %>
-
-
-	    			<td><a href="#">Add More Answer</a></td>
-	    		</tr>
-    		<% end %>
-    	</table>
-
-	</div>
-</div><!-- end wrapper -->
-
+	    				<td>
+	    					<% if leave_day <= 0 %>
+	    						<span>
+								<%= link_to '<button class="btn btn-success">View Completed Round</button>'.html_safe, view_completed_vote_path(round[:suggestion]) %>
+								</span>
+	    					<% else %>
+	    						<span>
+								<%= link_to '<button class="btn btn-danger">Start Voting</button>'.html_safe, status_round_path(round[:suggestion], :status => "vote"), method: :post %>
+								</span>
+	    					<% end %>
+	    				</td>
+		    		</tr>
+	    		<% end %>
+			    </table>
+          	</div>
+        </div>
+    </div>

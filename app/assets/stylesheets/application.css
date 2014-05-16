@@ -258,11 +258,13 @@ span.view_completed_round a {
   color: #008000;
 }
 span.leave_deadline {
-  color: #4EA007;
-  /*#F8B32A*/
+  color: #B10000;
 }
 span.argent_deadline {
   color: #FF9900;
+}
+span.view_completed_round {
+  color: #FF0000;
 }
 
 

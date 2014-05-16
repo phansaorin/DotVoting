@@ -1,16 +1,14 @@
-<!-- <div id="navbar-inner" class="navbar-inner header">
-<span class="span-leave">ROUND MENAGEMNET</span>
-</div> -->	
 <div id="wrapper">
 	<div class="container-fluid">
         <div class="row-fluid">
           	<div class="span2">
           		<h3>Action</h3>
                 <ul class="nav nav-tabs nav-stacked">
-			    	<li><a href="#">Management</a></li>
-					<li><%= link_to 'User',users_path %></li>
-					<li class="active"><%= link_to "Round Phase",rounds_path%></li>
-					<li class="#"><%= link_to 'Suggestion Phase',suggestions_path %></li>
+                	<% if current_user.admin? %>
+					<li class="active"><%= link_to "Round",rounds_path%></li>
+					<% end %>
+					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
+					<li class="#"><%= link_to 'Vote',votes_path %></li>
 			    </ul>
           	</div>
           	<div class="span10">
@@ -24,27 +22,35 @@
 						<th>Round</th>
 						<th>Deadline</th>
 						<th>Action</th>
-						<th></th>
 					</tr>
 
 				<%	@count_round_id = 0 %>
 
 				<% @rounds.each do |round| %>
+				<% leave_day = (round.deadline - Date.today).to_i %>
 			    	<tr>
 						<td><%= @count_round_id = @count_round_id + 1 %></td>
 						<td><%= round.question %></td>
-						<td><%= round.deadline %></td>
+	    				<% if leave_day > 0 %>
+	    					<td><span class="leave_deadline">(Leave: <%= leave_day %> day(s) )</span></td>
+	    				<% elsif leave_day <= 0 %>
+	    					<td>
+	    						<span class="view_completed_round">(Closed)</span>
+	    					</td>
+	    				<% end %>
+
 						<td>
-							<span>
-								<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
-							</span> 
-							&nbsp;
-							<span>
-								<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
-							</span>
-						</td>
-						<td>
-	         <span><%= link_to '<button class="btn btn-success">Start Suggestion Phase</button>'.html_safe, status_round_path(round, :status => true), method: :post %></span>
+							<% if leave_day > 0 %>
+								<span>
+									<%= link_to image_tag("edit.png", :alt => "Edit", :title => "Edit"), edit_round_path(round) %>
+								</span> 
+								&nbsp;
+								<span>
+									<%= link_to image_tag("delete.png", :alt => "Delete", :title => "Delete"), round_path(round), method: :delete, data: {confirm: "Are you sure want to delete this record?"} %> 
+								</span>	
+							<% elsif leave_day <= 0 %>
+								<span><%= link_to '<button class="btn btn-success">Start Suggestion Phase</button>'.html_safe, status_round_path(round, :status => "suggestion"), method: :post %></span>
+							<% end %>
 						</td>
 					</tr>
 				<% end %>

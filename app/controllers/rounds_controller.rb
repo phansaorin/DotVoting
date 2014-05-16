@@ -2,7 +2,7 @@ class RoundsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @rounds = Round.find_all_by_status(false)
+    @rounds = Round.where(:status => "round").order("deadline ASC")
   end
 
   def new
@@ -34,9 +34,6 @@ class RoundsController < ApplicationController
   end
 
   def add_more_answer
-
-    #debugger
-
       @more_answer = Answer.new
       @new_answer.round_id = params[:round][:id]
       @new_answer.question = params[:round][:question]
@@ -46,7 +43,8 @@ class RoundsController < ApplicationController
   end
 
   def edit
-    @round = Round.find_by_id(params[:id])
+    @round = Round.find_by_id(params[:id])  
+    @date = @round.deadline
   end
 
   def update
@@ -65,7 +63,9 @@ class RoundsController < ApplicationController
   def status
     if params[:status]
       @round = Round.find_by_id(params[:id])
-      @round.status = true
+      @round.deadline = Date.today + 3.days
+      # @round.deadline = Date.today
+      @round.status = params[:status]
       if @round.save
         redirect_to rounds_path
         flash.notice = "#{@round.question} has been enable for suggestion!"
