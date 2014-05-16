@@ -8,11 +8,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def admin?
-  	self.role.name == "admin"
+  	false
+  	true if self.role && self.role.name == "admin"
   end
 
   def user?
-  	self.role.name == "user"
+  	false
+  	true if self.role && self.role.name == "user"
   end
 
 end

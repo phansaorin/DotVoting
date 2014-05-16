@@ -6,7 +6,9 @@
                 <ul class="nav nav-tabs nav-stacked">
 			    	<!-- <li><a href="#">Management</a></li> -->
 					<!-- <li><%= link_to 'User',users_path %></li> -->
-					<li class="active"><%= link_to "Round",rounds_path%></li>
+					<% if current_user.admin? %> 
+						<li class="active"><%= link_to "Round",rounds_path%></li>
+					<%end%>
 					<li class="#"><%= link_to 'Suggestion',suggestions_path %></li>
 					<li class="#"><%= link_to 'Vote',votes_path %></li>
 			    </ul>
