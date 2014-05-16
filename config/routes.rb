@@ -24,7 +24,7 @@ DotVoting::Application.routes.draw do
     post :save_voting, on: :collection
     post :add, on: :member
   end
-  root to: "rounds#index"
+  root to: "suggestions#index"
 
   resources :answers do
     post :store_answers, on: :collection
