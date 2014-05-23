@@ -8,6 +8,7 @@ class RoundsController < ApplicationController
   def new
   	@round = Round.new
     @date = Date.today + 3.days
+    @url_back = rounds_path
   end
 
   def create

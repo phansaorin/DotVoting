@@ -37,54 +37,11 @@
 		<!-- Voting -->
 			<br>
 			<%= ta.submit "Vote", class: "btn btn-info" %>
-			<a id="toggle-answer" style="cursor: pointer;" class="btn btn-info">Add more suggestion</a>
-
-			<!-- Add More Suggestion -->
-
-			<div id="answer-form">
-				Suggestion : <input type="text" id="sug_more">&nbsp; &nbsp;
-				<a href="#" id="btn_add_more" style="cursor: pointer;">Add</a>
-			</div>
-
-			<!-- End Add More Suggestion -->
+			<%= link_to '<input value="Back" type="button" class="btn btn-info" />'.html_safe, votes_path %>
 
 		<!-- End Voting -->
 
 		<% end %>
-
-		<!-- Comment -->
-
-		<script>
-			$(document).ready(function(){
-			  $("#show_comment").hide();
-			  var count_click = 0;
-			  $("#press").click(function(){
-			  	count_click = count_click + 1;
-			  	if(count_click%2 == 0){
-			  		$("#show_comment").hide();
-			    	document.getElementById("press").innerHTML = "View Comment <%= @comments.count %>";
-			  	}else{
-			  		$("#show_comment").show();
-			    	document.getElementById("press").innerHTML = "Hide Comment <%= @comments.count %>";
-			  	}
-			  });
-			});
-		</script>
-
-		<% if(@comments.count != 0) %>
-			<h5 id="press" style="cursor: pointer;">View Comment: <%= @comments.count %></h5>
-			<div id="show_comment">
-				<% @comments.each do |c|%>
-					<p style="color: #2F96B4;"><%= c.user.email %>: <%= c.txt_comment %></p>
-				<% end %>
-			</div>
-		<% end %>
-
-		<!-- <p>Login User : <%= current_user.email %></p> -->
-
-		<%= render partial: 'comments/form' %>
-
-		<!-- End comment -->
 
 	</div>
 </div><!-- end #wrapper-end -->

@@ -23,6 +23,8 @@ class SuggestionsController < ApplicationController
 
   def edit
     @suggestion = Round.find_by_id(params[:id])
+    @answers = Answer.find_all_by_round_id(params[:id])
+    @url_back = suggestions_path
   
     @comments = Comment.all
     @comment = Comment.new

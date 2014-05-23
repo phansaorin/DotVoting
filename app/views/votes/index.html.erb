@@ -51,7 +51,7 @@
 								</span>
 	    					<% else %>
 	    						<span>
-								<%= link_to '<button class="btn btn-danger">Start Voting</button>'.html_safe, status_round_path(round[:suggestion], :status => "vote"), method: :post %>
+								<%= link_to '<button class="btn btn-danger">Start Voting</button>'.html_safe, vote_path(round[:suggestion][:id]) %>
 								</span>
 	    					<% end %>
 	    				</td>

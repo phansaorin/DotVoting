@@ -1,6 +1,7 @@
 <% if @round %>
-	<div align='center'>
-	  <table class="tbl-user">
+
+	<div align='center' id="view_completed_round">
+	  <table class="tbl-user table">
 	  	<tr>
 	  		<td>Question</td>
 	  		<td>:</td>
@@ -9,7 +10,13 @@
 	  	<tr>
 	  		<td>Top Answer</td>
 	  		<td>:</td>
-	  		<td><%= @txt_answer %></td>
+	  		<td>
+	  			<% if !@txt_answer %>
+	  				<span>No answer of this voting round!</span>
+	  			<% else %>
+	  				<%= @txt_answer %>
+	  			<% end %>
+	  		</td>
 	  	</tr>
 	    <tr>
 	      <td colspan="3">

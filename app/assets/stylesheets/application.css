@@ -267,4 +267,9 @@ span.view_completed_round {
   color: #FF0000;
 }
 
+#view_completed_round {
+  margin: 0 auto;
+  width: 40%;
+}
+
 
