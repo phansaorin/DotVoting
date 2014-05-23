@@ -7,18 +7,11 @@
       <td><%= f.text_area :question, :placeholder => 'Enter Question' %></td>
     </tr>
     <tr>
-      <td><%= f.label "Suggestion" %></td>
-      <td>:</td>
-      <td><%= f.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "round_suggestion", :value => "", class: "form-control" %>
-        <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
-        </br>
-        <p id="suggestion_list"></p>
-      </td>
-    </tr>
-    <tr>
       <td><%= f.label :dealine %></td>
       <td>:</td>
-      <td><%= f.text_field :deadline, :id => "datepicker", :value => Date.today, class: "form-control" %></td>
+      <td>
+        <%= f.text_field :deadline, :id => "datepicker", :value => @date, class: "form-control" %>
+      </td>
     </tr>
     <tr>
     <tr>
@@ -31,38 +24,12 @@
 </div>
 <% end %>
   <script>
-    // add suggestion
 
-    document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
-
-    function addSuggestion(){
-      var elementObj = document.getElementById("suggestion_list");
-      var inputObj = document.getElementById("round_suggestion");
-
-      if(inputObj.value == "") {
-        alert("Please enter the suggestion!"); 
-      }else{
-          var checkBox = document.createElement("INPUT");
-          var answer = inputObj.value;
-          checkBox.setAttribute("type", "checkbox");
-          checkBox.setAttribute("value", answer);
-          checkBox.setAttribute("name", "answers[]");
-          checkBox.setAttribute("class", "answers");
-          checkBox.setAttribute("checked", "checked");
-          elementObj.appendChild(checkBox);
-          $("p#suggestion_list").append(" "+answer+"<br/>");
-          inputObj.value ="";
-      }
-
-    } 
+    $("body").on("click", ".delete_suggestion", function() {
+      $(this).remove();
+    });
 
     // date picker
 
     $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
-    function displayDate(){
-        document.getElementById("demo").innerHTML=Date();
-      }
   </script>
-  
-
-

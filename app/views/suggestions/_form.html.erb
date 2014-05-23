@@ -1,0 +1,85 @@
+<%= form_for @suggestion, url: add_suggestion_path(@suggestion), method: :post, :html => { :multipart => true } do |f| %>
+<div align='center'>
+  <table class="tbl-user">
+    <tr>
+      <td><%= f.label :question %></td>
+      <td>:</td>
+      <td><%= f.text_area :question, :placeholder => 'Enter Question', :disabled => "disabled" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :dealine %></td>
+      <td>:</td>
+      <td><%= f.text_field :deadline, :id => "datepicker", :value => @date, class: "form-control", :disabled => "disabled" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Suggestion" %></td>
+      <td>:</td>
+      <td><%= f.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "round_suggestion", :value => "", class: "form-control" %>
+        <a id="add_suggestion" style="cursor: pointer;">Add Suggestion</a>
+        </br>
+        <div id="suggestion_list"></div>
+        
+        <% if @answers %>
+          <div>
+          <% suggestionId = 0 %>
+            <% @answers.each do |answer| %>
+            <% suggestionId = suggestionId + 1 %>
+              <div class='delete_suggestion' id="delete_suggestion_<%= suggestionId %>">X 
+                <span class='suggestion'><%= answer.txt_answers %></span>
+                <input type="checkbox" value="<%= answer.txt_answers %>" name="answers[]" class="answers_disable" checked="checked">
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        
+      </td>
+    </tr>
+    <tr>
+    <tr>
+      <td colspan="3">
+        <%= f.submit "Submit", class: "btn btn-info" %>
+        <%= link_to '<input value="Back" type="button" class="btn btn-info" />'.html_safe, @url_back %>
+      </td>
+    </tr>
+  </table>
+</div>
+<% end %>
+  <script>
+    // add suggestion
+    var suggestionId = 0;
+    document.getElementById("add_suggestion").onclick = function(){addSuggestion()};
+
+    function addSuggestion(){
+      suggestionId = suggestionId + 1;
+      var elementObj = document.getElementById("suggestion_list");
+      var inputObj = document.getElementById("round_suggestion");
+
+      if(inputObj.value == "") {
+        alert("Please enter the suggestion!"); 
+      }else{
+          var answer = inputObj.value;
+          var checkBox = document.createElement("INPUT");
+          checkBox.setAttribute("type", "checkbox");
+          checkBox.setAttribute("value", answer);
+          checkBox.setAttribute("name", "answers[]");
+          checkBox.setAttribute("class", "answers_disable");
+          checkBox.setAttribute("checked", "checked");
+          //elementObj.appendChild(checkBox);
+          $("#suggestion_list").append("<div class='delete_suggestion' id='delete_suggestion_"+suggestionId+"'>X <span class='suggestion'>"+answer+"</span></div> ");
+
+          $("#delete_suggestion_"+suggestionId).append(checkBox);
+          inputObj.value ="";
+      }
+	} 
+
+    $("body").on("click", ".delete_suggestion", function() {
+      $(this).remove();
+    });
+
+    // date picker
+
+    $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+  </script>
+  
+
+

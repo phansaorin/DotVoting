@@ -213,6 +213,15 @@ h1 {
     width: 97.5%;
 }
 
+.blog-summary-small {
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(100, 100, 100, 0.1);
+    margin: 0 auto; 
+    padding: 10px 25px;
+    width: 50%;
+}
+
 h2 {
     font-size: 120%;
     font-weight: bold;
@@ -230,6 +239,37 @@ h2 {
 
 #answer-form{
   margin-top: 20px;
+}
+
+.delete_suggestion {
+  color: red;
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.answers_disable {
+  display: none;
+}
+span.suggestion {
+  color: #000000;
+}
+span.view_completed_round a {
+  color: #008000;
+}
+span.leave_deadline {
+  color: #B10000;
+}
+span.argent_deadline {
+  color: #FF9900;
+}
+span.view_completed_round {
+  color: #FF0000;
+}
+
+#view_completed_round {
+  margin: 0 auto;
+  width: 40%;
 }
 
 

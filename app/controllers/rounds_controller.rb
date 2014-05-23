@@ -2,11 +2,13 @@ class RoundsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @rounds = Round.find_all_by_status(false)
+    @rounds = Round.where(:status => "round").order("deadline ASC")
   end
 
   def new
   	@round = Round.new
+    @date = Date.today + 3.days
+    @url_back = rounds_path
   end
 
   def create
@@ -16,25 +18,23 @@ class RoundsController < ApplicationController
       @round.question = params[:round][:question]
       @round.deadline = params[:round][:deadline]
       if @round.save
-        params[:answers].each do |each_answer|
-          @answer = Answer.new
-          @answer.txt_answers = each_answer
-          @answer.round_id = @round.id
-          @answer.top_answer = 0
-          @answer.save!
+        if params[:answers]
+          params[:answers].each do |each_answer|
+            @answer = Answer.new
+            @answer.txt_answers = each_answer
+            @answer.round_id = @round.id
+            @answer.top_answer = 0
+            @answer.save!
+          end
         end
         redirect_to rounds_path
       else 
         render :new
         flash.alert = "Cannot add new round!"
       end
-     
   end
 
   def add_more_answer
-
-    #debugger
-
       @more_answer = Answer.new
       @new_answer.round_id = params[:round][:id]
       @new_answer.question = params[:round][:question]
@@ -44,7 +44,8 @@ class RoundsController < ApplicationController
   end
 
   def edit
-    @round = Round.find_by_id(params[:id])
+    @round = Round.find_by_id(params[:id])  
+    @date = @round.deadline
   end
 
   def update
@@ -63,7 +64,9 @@ class RoundsController < ApplicationController
   def status
     if params[:status]
       @round = Round.find_by_id(params[:id])
-      @round.status = true
+      @round.deadline = Date.today + 3.days
+      # @round.deadline = Date.today
+      @round.status = params[:status]
       if @round.save
         redirect_to rounds_path
         flash.notice = "#{@round.question} has been enable for suggestion!"

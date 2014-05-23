@@ -1,6 +1,6 @@
 <div id="wrapper-font">
 	
-	<div class="blog-summary">
+	<div class="blog-summary-small">
 
 		<h2>Voting</h2>
 
@@ -16,56 +16,32 @@
 
 			<input type="hidden" name="round_id" value="<%= @question_id %>" />
 
-			<p id="all-answer">
+			<div id="all_answer">
 				<% @arr_answers.each do |answer| %>
 					<% @voted = UserAnswer.find_by_user_id_and_answer_id(current_user.id, answer[:answer].id) %>
 					
 					<% if @voted != nil %>
 						<input type="checkbox" value="<%= answer[:answer].id %>" name='suggestion_answers[]' checked="checked" /> <%= answer[:answer].txt_answers %> <span style="color: red;">&nbsp; &nbsp; Voted:<%= answer[:amount] %></span><br/>
+
 					<% else %>
+					
 						<input type="checkbox" value="<%= answer[:answer].id %>" name='suggestion_answers[]' /> <%= answer[:answer].txt_answers %> <span style="color: red;">&nbsp; &nbsp; Voted:<%= answer[:amount] %></span><br/>
+					
 					<% end %>
-					 <span id="new-suggestion"></span>
 				<% end %>
-			</p>
+					 <!-- <span id="new_suggestion"></span> -->
+			</div>
 
 		<!-- End Answer or Suggestion -->
 
 		<!-- Voting -->
+			<br>
 			<%= ta.submit "Vote", class: "btn btn-info" %>
-			<a id="toggle-answer" style="cursor: pointer;" class="btn btn-info">Add more suggestion</a>
+			<%= link_to '<input value="Back" type="button" class="btn btn-info" />'.html_safe, votes_path %>
+
 		<!-- End Voting -->
 
 		<% end %>
-
-		<!-- Add More Suggestion -->
-
-			<%= form_for :rounds, url: {action: 'add_more_answer', controller: 'rounds'} do |a| %>
-
-				
-				<div id="answer-form">
-					Suggestion : <%= a.text_field "suggestion", :placeholder => 'Enter Suggestion', :id => "kk", :value => " ", class: "form-control" %><%= a.submit "Add More", class: "btn btn-info" %>
-					 <!-- <a id="add-more-sug" style="cursor: pointer;">Add Suggestion</a> -->
-				</div>
-
-			<% end %>
-
-		<!-- End Add More Suggestion -->
-		
-
-		<!-- Comment -->
-
-		<% if(@comments.count != 0) %>
-			<h5>Comment List: <%= @comments.count %></h5>
-			<% @comments.each do |c|%>
-				<p><%= c.user.email %>: <%= c.txt_comment %></p>
-			<% end %>
-		<% end %>
-
-		<!-- <p>Login User : <%= current_user.email %></p> -->
-		<%= render partial: 'comments/form' %>
-
-		<!-- End comment -->
 
 	</div>
 </div><!-- end #wrapper-end -->
@@ -77,33 +53,35 @@
 	//toggle show form for add suggestion
 
 	$(document).ready(function(){
+		//alert("hello");
 	$("#answer-form").hide();
 	  $("#toggle-answer").click(function(){
 	    $("#answer-form").toggle();
 	  });
 	});
 
-	// add more suggestion action
+	// user add more suggestion
 
-	document.getElementById('add-more-sug').onclick = function(){addMoreSuggestion()};
+	document.getElementById('btn_add_more').onclick = function(){userAddSug()};
 
-	function addMoreSuggestion(){
-		var newSuggestion = document.getElementById('new-suggestion');
-		var roundSuggestion = document.getElementById('round_suggestion');
+	function userAddSug(){
 
-		if(roundSuggestion.value == "") {
+		var userAddSug = document.getElementById('all_answer');
+		var userRoundSug = document.getElementById('sug_more');
+
+		if(userRoundSug.value == "") {
         	alert("Please enter the suggestion!"); 
 	    }else{
-	          var newCheckBox = document.createElement("INPUT");
-	          var newAnswer = roundSuggestion.value;
-	          newCheckBox.setAttribute("type", "checkbox");
-	          newCheckBox.setAttribute("value", newAnswer);
-	          newCheckBox.setAttribute("name", "answers[]");
-	          newCheckBox.setAttribute("class", "answers");
-	          newCheckBox.setAttribute("checked", "checked");
-	          elementObj.appendChild(newCheckBox);
-	          $("new-suggestion").append(" "+newAnswer+"<br/>");
-	          roundSuggestion.value ="";
+			var newCheckBox = document.createElement("INPUT");
+			var newAnswer = userRoundSug.value;
+			newCheckBox.setAttribute("type", "checkbox");
+			newCheckBox.setAttribute("value", newAnswer);
+			newCheckBox.setAttribute("name", "answers[]");
+			newCheckBox.setAttribute("class", "answers");
+			newCheckBox.setAttribute("checked", "checked");
+			userAddSug.appendChild(newCheckBox);
+			$("#all_answer").append(" "+newAnswer+"<span style='color: red;'>&nbsp; &nbsp; Voted:0</span><br/>");
+			userRoundSug.value = "";
 	    }
 	}
 

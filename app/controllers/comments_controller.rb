@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
   	@new_comment.user_id = current_user.id
   	@new_comment.save!
   	#redirect_to round_comments_path(@round, @comment)
-  	redirect_to vote_path(@round)
+  	redirect_to edit_suggestion_path(@round)
   end
 
 end

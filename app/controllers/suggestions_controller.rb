@@ -3,10 +3,10 @@ class SuggestionsController < ApplicationController
   def index
   	# @suggestion = Round.where(:status => true)
     @arr_suggestions = []
-  	@suggestions = Round.find_all_by_status(true)
+  	@suggestions = Round.where(:status => "suggestion").order("deadline ASC")
   
     @suggestions.each do |suggestion|
-        top_answer = UserAnswer.where(:round_id => suggestion.id).group("answer_id").order("count(answer_id) desc").first
+        top_answer = UserAnswer.where(:round_id => suggestion.id).group("answer_id").order("count(answer_id) DESC").first
         if top_answer
           show_answer = top_answer.answer.txt_answers
         else
@@ -18,8 +18,46 @@ class SuggestionsController < ApplicationController
   end
 
   def show
-
     @suggestion = Round.new
+  end
+
+  def edit
+    @suggestion = Round.find_by_id(params[:id])
+    @answers = Answer.find_all_by_round_id(params[:id])
+    @url_back = suggestions_path
+  
+    @comments = Comment.all
+    @comment = Comment.new
+    @date = Date.today + 3.days 
+  end
+
+  def update
+    # @new_comment = Comment.new
+    # @new_comment.txt_comment = params[:comment][:txt_comment]
+    # @new_comment.round_id = params[:round_id]
+    # @new_comment.user_id = current_user.id
+    # @new_comment.save!
+    # @date = Date.today + 3.days 
+  end
+
+  def add
+    @round = Round.find_by_id(params[:id])
+    @round.question = params[:round][:question]
+    @round.deadline = params[:round][:deadline]
+
+    Answer.where(:round_id => params[:id]).destroy_all
+
+    if params[:answers]
+      params[:answers].each do |each_answer|
+        @answer = Answer.new
+        @answer.txt_answers = each_answer
+        @answer.round_id = @round.id
+        @answer.top_answer = 0
+        @answer.save!
+      end
+    end
+    redirect_to suggestions_path
+    flash.notice = "New suggestion has been added!"
   end
 
   def status
@@ -32,20 +70,31 @@ class SuggestionsController < ApplicationController
   end
 
   def save_voting
+
     if params[:suggestion_answers]
       # Delete all records of user voted at previous time
       Round.delete_user_answer current_user.id, params[:round_id]
       params[:suggestion_answers].each do |vote_answer|
         @user_answer = UserAnswer.new
-
-        @user_answer.answer_id = vote_answer
-        @user_answer.user_id = current_user.id
-        @user_answer.round_id = params[:round_id]
-        @user_answer.save!
+        @user_answer.save vote_answer, current_user.id, params[:round_id]
       end
     else
       # Delete all records of user voted at previous time
       Round.delete_user_answer current_user.id, params[:round_id]
+    end
+
+
+    if params[:answers]
+      params[:answers].each do |an|
+        @answer = Answer.new
+        @answer.txt_answers = an
+        @answer.round_id = params[:round_id]
+        if @answer.save
+           @user_answer = UserAnswer.new
+
+           @user_answer.save Answer.last.id, current_user.id, params[:round_id]
+        end
+      end
     end
 
     redirect_to vote_path(params[:round_id])
